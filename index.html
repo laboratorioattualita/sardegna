@@ -160,10 +160,10 @@
             margin-right: auto;
         }
 
-        /* STILE DELLA LOCANDINA PRINCIPALE */
+        /* STILE DELLA LOCANDINA PRINCIPALE (BANDIERA DELLA SARDEGNA) */
         .poster-wrapper {
             margin: 0 auto 3.5rem auto;
-            max-width: 420px;
+            max-width: 550px; /* Leggermente allargata per valorizzare la bandiera */
             border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow-md);
@@ -181,10 +181,10 @@
             width: 100%;
             height: auto;
             display: block;
-            object-fit: contain; /* Garantisce la visualizzazione intera */
+            object-fit: contain; /* Visualizzazione intera e proporzionata senza tagli */
         }
 
-        /* COPERTINA DELLE SINGOLE TAPPE (INTERE SENZA RITAGLI) */
+        /* COPERTINE DELLE SINGOLE TAPPE (INTERE SENZA RITAGLI) */
         .station-poster-wrapper {
             margin: 1.2rem 0;
             border-radius: 10px;
@@ -192,13 +192,13 @@
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-color);
             max-width: 100%;
-            display: none; /* Si mostra via JS solo se estratta con successo */
+            display: none; /* Si mostra via JS solo dopo che l'estrazione ha avuto successo */
         }
 
         .station-poster {
             width: 100%;
             height: auto;
-            object-fit: contain; /* Mantiene l'immagine intera senza tagliarla */
+            object-fit: contain; /* Garantisce l'immagine intera e proporzionata */
             display: block;
         }
 
@@ -707,7 +707,7 @@
         <p class="hero-subtitle">Un viaggio immersivo e sonoro tra i simboli identitari, le eccellenze dei sapori, le voci letterarie e il cammino storico della Sardegna.</p>
         
         <div class="poster-wrapper">
-            <img id="mainPoster" src="locandina.jpg" alt="Locandina Ufficiale della Mostra - Anima di un'Isola" class="exhibition-poster">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Flag_of_Sardinia.svg/1920px-Flag_of_Sardinia.svg.png" alt="Bandiera della Sardegna - I Quattro Mori" class="exhibition-poster">
         </div>
 
         <div class="quotes-container">
@@ -732,7 +732,11 @@
                     <h2 class="station-title">Costumi, Simboli e Identità</h2>
                 </div>
                 
-                <p>Benvenuti alla prima stazione della mostra. Questo spazio introduce l'identità visiva, linguistica e antropologica dell'isola, esplorando le radici profonde dei suoi simboli grafici, la specificità della sua lingua e il mistero della sua straordinaria longevità.</p>
+                <p>Benvenuti alla prima stazione della mostra. Questo spazio introduce l'identità visiva, linguisticofantropologica dell'isola, esplorando le radici profonde dei suoi simboli grafici, la specificità della sua lingua e il mistero della sua straordinaria longevità.</p>
+
+                <div class="station-poster-wrapper">
+                    <img class="station-poster" data-audio-src="1_costumi_e_simboli.mp3" alt="Copertina Tappa 1 - Costumi, Simboli e Identità">
+                </div>
 
                 <div class="custom-player" data-src="1_costumi_e_simboli.mp3">
                     <div class="player-controls">
@@ -777,7 +781,7 @@
                 </div>
 
                 <div class="subsection-title">La Terra dei Centenari - Blue Zone</div>
-                <p style="font-size: 9.5pt;">Il concetto di <strong>Blue Zone</strong> evidenzia che l'Ogliastra e la Barbagia hanno una delle più alte concentrazioni di centenari al mondo, con paesi simbolo come Seulo, Osini e Villagrande Strisaili.</p>
+                <p style="font-size: 9.5pt;">Il concept di <strong>Blue Zone</strong> evidenzia che l'Ogliastra e la Barbagia hanno una delle più alte concentrazioni di centenari al mondo, con paesi simbolo come Seulo, Osini e Villagrande Strisaili.</p>
 
                 <h4 style="font-size: 10pt; color: var(--accent-myrtle); margin-top: 0.5rem; margin-bottom: 0.5rem;">I 6 Pilastri della Longevità Sarda:</h4>
                 <div class="pilastri-grid">
@@ -839,7 +843,7 @@
                     </div>
                     <div class="food-item">
                         <div class="food-name">Il Filu 'e Ferru</div>
-                        <div class="food-desc">L'acquavite tradicional. Il nome deriva dall'astuzia contadina in epoca di distillazione clandestina: le bottiglie venivano nascoste sottoterra e collegate a un sottile filo di ferro affiorante.</div>
+                        <div class="food-desc">L'acquavite tradizionale. Il nome deriva dall'astuzia contadina in epoca di distillazione clandestina: le bottiglie venivano nascoste sottoterra e collegate a un sottile filo di ferro affiorante.</div>
                     </div>
                 </div>
             </div>
@@ -977,7 +981,7 @@
 
     <script>
         // FUNZIONE UNIFICATA: Estrattore nativo ID3v2 per copertine MP3 (APIC Frame)
-        async function estraiEVisualizzaCopertina(mp3Url, imgElement, isMainPoster = false) {
+        async function estraiEVisualizzaCopertina(mp3Url, imgElement) {
             try {
                 const response = await fetch(mp3Url);
                 if (!response.ok) return;
@@ -1052,38 +1056,29 @@
                         // Assegna il link BLOB all'immagine target
                         imgElement.src = blobUrl;
 
-                        // Se è una copertina di tappa, rendi visibile il suo contenitore di stile
-                        if (!isMainPoster) {
-                            const wrapper = imgElement.closest('.station-poster-wrapper');
-                            if (wrapper) wrapper.style.display = 'block';
-                        }
+                        // Rendi visibile il contenitore di stile dell'immagine estratta
+                        const wrapper = imgElement.closest('.station-poster-wrapper');
+                        if (wrapper) wrapper.style.display = 'block';
+                        
                         break;
                     }
                     offset += 10 + frameSize;
                 }
             } catch (e) {
-                console.warn(`Estrazione copertina fallita per ${mp3Url}. Dettaglio: CORS o restrizioni file:// attivo.`);
+                console.warn(`Estrazione copertina fallita per ${mp3Url}. Dettaglio: CORS o restrizioni locali.`);
             }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             
-            // 1. ESTRAZIONE AUTOMATICA DI TUTTE LE COPERTINE DA MP3
-            // Estrae la locandina principale dal file audio della prima tappa
-            const mainPosterEl = document.getElementById('mainPoster');
-            if (mainPosterEl) {
-                estraiEVisualizzaCopertina("1_costumi_e_simboli.mp3", mainPosterEl, true);
-            }
-
-            // Cicla ed estrae le copertine per ciascuna tappa specifica rimasta
+            // 1. ESTRAZIONE AUTOMATICA DI TUTTE LE COPERTINE DALLE TRACCE MP3
             const stationImages = document.querySelectorAll('.station-poster');
             stationImages.forEach(img => {
                 const audioSrc = img.getAttribute('data-audio-src');
                 if (audioSrc) {
-                    estraiEVisualizzaCopertina(audioSrc, img, false);
+                    estraiEVisualizzaCopertina(audioSrc, img);
                 }
             });
-
 
             // 2. NOTA INTERATTIVA DINAMICA (AJÒ)
             const ajoNote = document.getElementById('ajo-note');
@@ -1149,7 +1144,7 @@
                             }
                         });
 
-                        audio.play().catch(err => console.log("Riproduzione bloccata o file mancante:", err));
+                        audio.play().catch(err => console.log("Riproduzione bloccata o file non trovato:", err));
                         iconPlay.style.display = 'none';
                         iconPause.style.display = 'block';
                     } else {
