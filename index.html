@@ -154,10 +154,33 @@
             font-size: 13pt;
             font-style: italic;
             color: var(--accent-myrtle);
-            margin-bottom: 3.5rem;
+            margin-bottom: 2.5rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        /* STILE DELLA LOCANDINA */
+        .poster-wrapper {
+            margin: 0 auto 3.5rem auto;
+            max-width: 420px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            background-color: var(--bg-stone);
+        }
+
+        .poster-wrapper:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 38px rgba(44, 41, 39, 0.12);
+        }
+
+        .exhibition-poster {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .quotes-container {
@@ -223,7 +246,7 @@
             background-color: var(--accent-blue);
         }
 
-        /* LAYOUT PERCORSO ESPOSITIVO FLOATING CARDS */
+        /* LAYOUT PERCORSO ESPOSITIVO */
         .exhibition-container {
             max-width: 900px;
             margin: 4rem auto;
@@ -231,7 +254,6 @@
             position: relative;
         }
 
-        /* Linea temporale/percorso verticale centrale */
         .exhibition-container::before {
             content: '';
             position: absolute;
@@ -249,7 +271,7 @@
             }
         }
 
-        /* STAZIONI DELL'GUIDA */
+        /* STAZIONI DELL'AUDIOGUIDA */
         .station {
             position: relative;
             margin-bottom: 5rem;
@@ -334,7 +356,7 @@
             line-height: 1.3;
         }
 
-        /* CUSTOM PLAYER  MINIMALISTA ED ELEGANTE */
+        /* CUSTOM PLAYER AUDIO */
         .custom-player {
             background-color: var(--bg-stone);
             border-radius: 12px;
@@ -665,9 +687,13 @@
         <h1>Anima di un'Isola</h1>
         <p class="hero-subtitle">Un viaggio immersivo e sonoro tra i simboli identitari, le eccellenze dei sapori, le voci letterarie e il cammino storico della Sardegna.</p>
         
+        <div class="poster-wrapper">
+            <img id="mainPoster" src="locandina.jpg" alt="Locandina Ufficiale della Mostra - Anima di un'Isola" class="exhibition-poster">
+        </div>
+
         <div class="quotes-container">
             <div class="quote-card">
-                <p class="quote-text">«La Sardegna è un'altra cosa: più ampia, molto più scalza, profonda, che non finisce mai. È come la libertà stessa.»</p>
+                <p class="quote-text">«La Sardegna è un'altra cosa: più ampia, molto più scalza, profonda, che nu finisce mai. È come la libertà stessa.»</p>
                 <div class="quote-author">D.H. Lawrence, "Mare e Sardegna"</div>
             </div>
             <div class="quote-card">
@@ -719,7 +745,7 @@
                 </div>
 
                 <div class="subsection-title">La Lingua Sarda</div>
-                <p style="font-size: 9.5pt;">Il sardo è una lingua storica di minoranza ufficialmente riconosciuta e tutelata dalla <strong>Legge 482/1999</strong> (la quale protegge complessivamente altre 12 lingue in Italia, come il friulano o il catalano di Alghero). Ha radici arcaiche latine e influenze storiche derivanti dall'uso nei Giudicati.</p>
+                <p style="font-size: 9.5pt;">Il sardo è una lingua storica di minoranza ufficialmente riconosciuta e tutelata dalla <strong>Legge 482/1999</strong>. Ha radici arcaiche latine e influenze storiche derivanti dall'uso nei Giudicati.</p>
 
                 <div class="interactive-note" id="ajo-note">
                     <div class="note-header">
@@ -732,7 +758,7 @@
                 </div>
 
                 <div class="subsection-title">La Terra dei Centenari - Blue Zone</div>
-                <p style="font-size: 9.5pt;">Il concetto di <strong>Blue Zone</strong> nasce dagli studi demografici di Gianni Pes, Michel Poulain e Dan Buettner. Evidenzia che l'Ogliastra e la Barbagia hanno una delle più alte concentrazioni di centenari al mondo, con paesi simbolo come Seulo, Osini e Villagrande Strisaili.</p>
+                <p style="font-size: 9.5pt;">Il concetto di <strong>Blue Zone</strong> evidenzia che l'Ogliastra e la Barbagia hanno una delle più alte concentrazioni di centenari al mondo, con paesi simbolo come Seulo, Osini e Villagrande Strisaili.</p>
 
                 <h4 style="font-size: 10pt; color: var(--accent-myrtle); margin-top: 0.5rem; margin-bottom: 0.5rem;">I 6 Pilastri della Longevità Sarda:</h4>
                 <div class="pilastri-grid">
@@ -778,19 +804,19 @@
                 <div class="food-list">
                     <div class="food-item">
                         <div class="food-name">Fiore Sardo DOP</div>
-                        <div class="food-desc">Formaggio pecorino ovino d'eccellenza a latte crudo e affumicato in Barbagia. È facilmente riconoscibile dal caratteristico bollino edibile a forma di fiore applicato sulla crosta per garantirne l'autentica tracciabilità.</div>
+                        <div class="food-desc">Formaggio pecorino ovino d'eccellenza a latte crudo e affumicato in Barbagia. È facilmente riconoscibile dal caratteristico bollino edibile a forma di fiore applicato sulla crosta.</div>
                     </div>
                     <div class="food-item">
                         <div class="food-name">Birra Ichnusa</div>
-                        <div class="food-desc">Fondata nel 1912 a Cagliari da Amsicora Capra. Il nome deriva dal greco antico "Ichnôussa" (impronta). Pur essendo passata al gruppo Heineken, mantiene orgogliosamente lo stabilimento di produzione ad Assemini.</div>
+                        <div class="food-desc">Fondata nel 1912 a Cagliari da Amsicora Capra. Il nome deriva dal greco antico "Ichnôussa" (impronta). Mantiene lo stabilimento di produzione ad Assemini.</div>
                     </div>
                     <div class="food-item">
                         <div class="food-name">Il Mirto</div>
-                        <div class="food-desc">Liquore iconico frutto della secolare tradizione domestica nata nell'Ottocento, ottenuto dall'infusione idroalcolica delle caratteristiche bacche profumate della macchia mediterranea.</div>
+                        <div class="food-desc">Liquore iconico frutto della secolare tradizione domestica nata nell'Ottocento, ottenuto dall'infusione idroalcolica delle caratteristiche bacche profumate.</div>
                     </div>
                     <div class="food-item">
                         <div class="food-name">Il Filu 'e Ferru</div>
-                        <div class="food-desc">L'acquavite tradizionale. Il nome deriva dall'astuzia contadina in epoca di distillazione clandestina: le bottiglie venivano nascoste sottoterra e collegate a un sottile filo di ferro che affiorava dal terreno, utile al produttore per individuarle.</div>
+                        <div class="food-desc">L'acquavite tradizionale. Il nome deriva dall'astuzia contadina in epoca di distillazione clandestina: le bottiglie venivano nascoste sottoterra e collegate a un sottile filo di ferro affiorante.</div>
                     </div>
                 </div>
             </div>
@@ -827,22 +853,22 @@
 
                 <div class="author-profile">
                     <div class="author-name">Grazia Deledda</div>
-                    <div class="author-bio">Nata a Nuoro, vincitrice del Premio Nobel per la Letteratura nel 1926 (unica donna italiana della storia). Nei suoi romanzi (come "Canne al vento") ha saputo narrare la Sardegna rurale e mitica con profonda introspezione spirituale.</div>
+                    <div class="author-bio">Nata a Nuoro, vincitrice del Premio Nobel per la Letteratura nel 1926. Nei suoi romanzi (come "Canne al vento") ha saputo narrare la Sardegna rurale e mitica.</div>
                 </div>
 
                 <div class="author-profile">
                     <div class="author-name">Antonio Gramsci & Emilio Lussu</div>
-                    <div class="author-bio">Intellettuali e giganti dell'impegno politico e letterario. Gramsci (di Ghilarza) offre sguardi acuti sulle radici storiche regionali; Lussu (di Armungia), celebre autore di "Un anno sull'Altipiano", rappresenta il fulcro del sardismo democratico e della resistenza antifascista.</div>
+                    <div class="author-bio">Intellettuali e giganti dell'impegno politico e letterario. Gramsci (di Ghilarza) offre sguardi acuti sulle radici storiche regionali; Lussu (di Armungia), celebre autore di "Un anno sull'Altipiano", rappresenta il fulcro del sardismo democratico.</div>
                 </div>
 
                 <div class="author-profile">
                     <div class="author-name">Michela Murgia</div>
-                    <div class="author-bio">Voce contemporanea di straordinaria potenza intellettuale. Con il capolavoro "Accabadora", ha svelato al mondo i codici antropologici ed etici profondi delle comunità sarde più interne.</div>
+                    <div class="author-bio">Voce contemporanea di straordinaria potenza intellettuale. Con il capolavoro "Accabadora", ha svelato al mondo i codici antropologici ed etici profondi delle comunità sarde.</div>
                 </div>
 
                 <div class="author-profile">
                     <div class="author-name">Gli Sguardi Internazionali</div>
-                    <div class="author-bio">L'isola ha affascinato anche grandi menti internazionali come D.H. Lawrence, che ne catturò la selvaggia e fiera spazialità, e James Joyce, profondamente incuriosito dalla peculiare espressione linguistica e fonetica del sardo.</div>
+                    <div class="author-bio">L'isola ha affascinato anche grandi menti internazionali come D.H. Lawrence, che ne catturò la selvaggia e fiera spazialità, e James Joyce, incuriosito dalla peculiare espressione linguistica sarda.</div>
                 </div>
             </div>
         </section>
@@ -883,7 +909,7 @@
                     </div>
                     <div class="inner-timeline-item">
                         <span class="inner-timeline-year">Il Glorioso Giudicato di Arborea</span>
-                        <span class="inner-timeline-desc">L'era dei quattro regni sovrani. Spicca la figura della giudicessa Eleonora d'Arborea e l'introduzione della celebre "Carta de Logu", una delle prime raccolte di leggi organiche d'Europa.</span>
+                        <span class="inner-timeline-desc">L'era dei quattro regni sovrani. Spicca la figura della giudicessa Eleonora d'Arborea e l'introduzione della celebre "Carta de Logu".</span>
                     </div>
                     <div class="inner-timeline-item">
                         <span class="inner-timeline-year">Dai Savoia all'Autonomia</span>
@@ -914,14 +940,104 @@
             <div class="logo-text" style="color: white;">SardegnaMultimediale</div>
         </div>
         <p>&copy; 2026 Mostra Digitale sulla Cultura Sarda. Tutti i diritti riservati.</p>
-        <p style="font-size: 8pt; margin-top: 0.5rem; opacity: 0.6;">I file audio mappati fanno riferimento esattamente alle tracce locali caricate.</p>
     </footer>
 
     <a href="#hero" class="back-to-top" id="backToTop" aria-label="Torna in alto">▲</a>
 
     <script>
+        // FUNZIONE AVANZATA: Estrattore nativo ID3v2 per copertina MP3 (APIC Frame)
+        async function estraiLocandinaDaMp3(mp3Url, targetImgId) {
+            try {
+                const response = await fetch(mp3Url);
+                if (!response.ok) return;
+                const arrayBuffer = await response.arrayBuffer();
+                const view = new DataView(arrayBuffer);
+
+                // Verifica intestazione "ID3" (Primi 3 byte)
+                if (view.getUint8(0) !== 0x49 || view.getUint8(1) !== 0x44 || view.getUint8(2) !== 0x33) return;
+
+                const versione = view.getUint8(3);
+                if (versione !== 3 && versione !== 4) return; // Supporta ID3v2.3 e v2.4
+
+                // Calcola la dimensione globale dei tag ID3 (Synchsafe integer a 4 byte)
+                const tagSize = ((view.getUint8(6) & 0x7F) << 21) |
+                                ((view.getUint8(7) & 0x7F) << 14) |
+                                ((view.getUint8(8) & 0x7F) << 7)  |
+                                (view.getUint8(9) & 0x7F);
+
+                let offset = 10;
+                // Cicla tra i frame per cercare il frame "APIC" (Attached Picture)
+                while (offset < tagSize + 10) {
+                    let frameId = "";
+                    for (let i = 0; i < 4; i++) {
+                        frameId += String.fromCharCode(view.getUint8(offset + i));
+                    }
+
+                    let frameSize = 0;
+                    if (versione === 3) {
+                        frameSize = view.getUint32(offset + 4);
+                    } else if (versione === 4) {
+                        frameSize = ((view.getUint8(offset + 4) & 0x7F) << 21) |
+                                    ((view.getUint8(offset + 5) & 0x7F) << 14) |
+                                    ((view.getUint8(offset + 6) & 0x7F) << 7)  |
+                                    ((view.getUint8(offset + 7) & 0x7F));
+                    }
+
+                    if (frameSize <= 0) break;
+
+                    if (frameId === "APIC") {
+                        let apicOffset = offset + 10;
+                        const encoding = view.getUint8(apicOffset);
+                        apicOffset += 1;
+
+                        // Estrae il Mime Type dell'immagine (es. image/jpeg, terminato da 0)
+                        let mimeType = "";
+                        while (view.getUint8(apicOffset) !== 0) {
+                            mimeType += String.fromCharCode(view.getUint8(apicOffset));
+                            apicOffset++;
+                        }
+                        apicOffset += 1; // Salta lo zero di terminazione
+
+                        const pictureType = view.getUint8(apicOffset); // 0x03 è di solito la cover frontale
+                        apicOffset += 1;
+
+                        // Salta la stringa della descrizione in base all'encoding di testo
+                        if (encoding === 1 || encoding === 2) { // UTF-16 (2 zero finali)
+                            while (view.getUint8(apicOffset) !== 0 || view.getUint8(apicOffset + 1) !== 0) {
+                                apicOffset += 2;
+                            }
+                            apicOffset += 2;
+                        } else { // Latin-1 o UTF-8 (1 zero finale)
+                            while (view.getUint8(apicOffset) !== 0) {
+                                apicOffset++;
+                            }
+                            apicOffset += 1;
+                        }
+
+                        // Calcola i dati binari effettivi dell'immagine e crea l'URL sorgente
+                        const imgSize = (offset + 10 + frameSize) - apicOffset;
+                        if (imgSize <= 0) return;
+
+                        const imgBuffer = arrayBuffer.slice(apicOffset, apicOffset + imgSize);
+                        const blob = new Blob([imgBuffer], { type: mimeType || 'image/jpeg' });
+                        const blobUrl = URL.createObjectURL(blob);
+
+                        // Aggiorna la locandina nella pagina
+                        document.getElementById(targetImgId).src = blobUrl;
+                        break;
+                    }
+                    offset += 10 + frameSize;
+                }
+            } catch (e) {
+                console.warn("Lettura ID3 bloccata da CORS o protocollo file://. Fallback su locandina.jpg attiva.");
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             
+            // Tenta di estrarre la locandina incorporata nel primo MP3 della directory base
+            estraiLocandinaDaMp3("1_costumi_e_simboli.mp3", "mainPoster");
+
             // 1. NOTA INTERATTIVA DINAMICA (AJÒ)
             const ajoNote = document.getElementById('ajo-note');
             if (ajoNote) {
@@ -946,11 +1062,9 @@
                 const currentTimeDisplay = player.querySelector('.current-time');
                 const durationDisplay = player.querySelector('.duration');
 
-                // Inizializza l'oggetto Audio nativo
                 const audio = new Audio(src);
                 audioObjects.push(audio);
 
-                // Formatta i secondi in stringa mm:ss
                 function formatTime(secs) {
                     if (isNaN(secs)) return "0:00";
                     const minutes = Math.floor(secs / 60);
@@ -958,12 +1072,10 @@
                     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
                 }
 
-                // Assegna durata al caricamento dei metadati
                 audio.addEventListener('loadedmetadata', () => {
                     durationDisplay.textContent = formatTime(audio.duration);
                 });
 
-                // Aggiorna costantemente la barra di avanzamento e il timer durante il play
                 audio.addEventListener('timeupdate', () => {
                     if (audio.duration) {
                         const percentage = (audio.currentTime / audio.duration) * 100;
@@ -972,7 +1084,6 @@
                     }
                 });
 
-                // Gestione fine traccia
                 audio.addEventListener('ended', () => {
                     iconPause.style.display = 'none';
                     iconPlay.style.display = 'block';
@@ -980,10 +1091,8 @@
                     currentTimeDisplay.textContent = "0:00";
                 });
 
-                // Play / Pause Toggle con Controllo Mutuo Esclusivo (Interrompe gli altri)
                 playBtn.addEventListener('click', () => {
                     if (audio.paused) {
-                        // Ferma immediatamente qualsiasi altro audio in riproduzione nella pagina
                         audioObjects.forEach((otherAudio, otherIndex) => {
                             if (otherIndex !== index) {
                                 otherAudio.pause();
@@ -993,8 +1102,7 @@
                             }
                         });
 
-                        // Avvia l'audio corrente
-                        audio.play().catch(err => console.log("Riproduzione interrotta o file mancante in locale:", err));
+                        audio.play().catch(err => console.log("File audio non trovato o non riproducibile:", err));
                         iconPlay.style.display = 'none';
                         iconPause.style.display = 'block';
                     } else {
@@ -1004,7 +1112,6 @@
                     }
                 });
 
-                // Barra di avanzamento (Timeline) interattiva e cliccabile
                 progressContainer.addEventListener('click', (e) => {
                     const rect = progressContainer.getBoundingClientRect();
                     const clickX = e.clientX - rect.left;
@@ -1016,20 +1123,18 @@
                 });
             });
 
-            // 3. SCROLL SPY METICOLOSO & BOTTONE BACK TO TOP
+            // 3. SCROLL SPY & BOTTONE BACK TO TOP
             const backToTop = document.getElementById('backToTop');
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('section, main > section');
 
             window.addEventListener('scroll', () => {
-                // Mostra/Nascondi bottone per tornare in alto
                 if (window.scrollY > 300) {
                     backToTop.classList.add('visible');
                 } else {
                     backToTop.classList.remove('visible');
                 }
 
-                // Evidenziazione dinamica della voce del menu in base allo scroll
                 let currentSectionId = '';
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop - 150;
