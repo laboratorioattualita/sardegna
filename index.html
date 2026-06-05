@@ -160,7 +160,7 @@
             margin-right: auto;
         }
 
-        /* STILE DELLA LOCANDINA */
+        /* STILE DELLA LOCANDINA PRINCIPALE */
         .poster-wrapper {
             margin: 0 auto 3.5rem auto;
             max-width: 420px;
@@ -180,6 +180,26 @@
         .exhibition-poster {
             width: 100%;
             height: auto;
+            display: block;
+        }
+
+        /* NUOVO STILE: COPERTINA DELLE SINGOLE TAPPE (DENTRO LE CARD) */
+        .station-poster-wrapper {
+            margin: 1.2rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            max-width: 100%;
+            max-height: 220px; /* Altezza bilanciata ed editoriale */
+            display: none; /* Si mostra via JS solo se estratta con successo */
+        }
+
+        .station-poster {
+            width: 100%;
+            height: 100%;
+            max-height: 220px;
+            object-fit: cover; /* Ritaglio panoramico intelligente */
             display: block;
         }
 
@@ -361,7 +381,7 @@
             background-color: var(--bg-stone);
             border-radius: 12px;
             padding: 1.2rem;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             margin-bottom: 1.5rem;
             display: flex;
             flex-direction: column;
@@ -693,7 +713,7 @@
 
         <div class="quotes-container">
             <div class="quote-card">
-                <p class="quote-text">«La Sardegna è un'altra cosa: più ampia, molto più scalza, profonda, che nu finisce mai. È come la libertà stessa.»</p>
+                <p class="quote-text">«La Sardegna è un'altra cosa: più ampia, molto più scalza, profonda, che non finisce mai. È come la libertà stessa.»</p>
                 <div class="quote-author">D.H. Lawrence, "Mare e Sardegna"</div>
             </div>
             <div class="quote-card">
@@ -714,6 +734,10 @@
                 </div>
                 
                 <p>Benvenuti alla prima stazione della mostra. Questo spazio introduce l'identità visiva, linguistica e antropologica dell'isola, esplorando le radici profonde dei suoi simboli grafici, la specificità della sua lingua e il mistero della sua straordinaria longevità.</p>
+
+                <div class="station-poster-wrapper">
+                    <img class="station-poster" data-audio-src="1_costumi_e_simboli.mp3" alt="Copertina Tappa 1 - Costumi e Simboli">
+                </div>
 
                 <div class="custom-player" data-src="1_costumi_e_simboli.mp3">
                     <div class="player-controls">
@@ -740,7 +764,7 @@
                         La Bandiera dei Quattro Mori & i Costumi
                     </div>
                     <p style="font-size: 9.5pt; margin-bottom: 0; color: var(--text-dark);">
-                        Le origini del vessillo affondano nel Medioevo. Tra la croce di San Giorgio, le tesi aragonesi (la vittoria di Alcoraz nel 1096 con le quattro teste dei re mori sconfitti) e l'influenza sardo-pisana, i quattro mori simboleggiano graficamente anche l'unione ideale dei quattro storici Giudicati sardi. Accanto ad essi, i raffinati costumi tradizionali tessono la trama visiva delle comunità dell'isola.
+                        Le origini del vessillo affondano nel Medioevo. Tra la croce di San Giorgio, le tesi aragonesi e l'influenza sardo-pisana, i quattro mori simboleggiano graficamente l'unione ideale dei quattro storici Giudicati sardi. Accanto ad essi, i raffinati costumi tradizionali tessono la trama visiva delle comunità dell'isola.
                     </p>
                 </div>
 
@@ -758,7 +782,7 @@
                 </div>
 
                 <div class="subsection-title">La Terra dei Centenari - Blue Zone</div>
-                <p style="font-size: 9.5pt;">Il concetto di <strong>Blue Zone</strong> evidenzia che l'Ogliastra e la Barbagia hanno una delle più alte concentrazioni di centenari al mondo, con paesi simbolo come Seulo, Osini e Villagrande Strisaili.</p>
+                <p style="font-size: 9.5pt;">Il conceito di <strong>Blue Zone</strong> evidenzia che l'Ogliastra e la Barbagia hanno una delle più alte concentrazioni di centenari al mondo, con paesi simbolo come Seulo, Osini e Villagrande Strisaili.</p>
 
                 <h4 style="font-size: 10pt; color: var(--accent-myrtle); margin-top: 0.5rem; margin-bottom: 0.5rem;">I 6 Pilastri della Longevità Sarda:</h4>
                 <div class="pilastri-grid">
@@ -781,6 +805,10 @@
                 </div>
                 
                 <p>La cultura di un popolo si legge a tavola. Questa sezione è dedicata all'enogastronomia certificata MASAF, un patrimonio di sapori antichi nati dal lavoro agro-pastorale e dalla biodiversità sarda.</p>
+
+                <div class="station-poster-wrapper">
+                    <img class="station-poster" data-audio-src="2_cibo e bevande.mp3" alt="Copertina Tappa 2 - Cibo e Bevande">
+                </div>
 
                 <div class="custom-player" data-src="2_cibo e bevande.mp3">
                     <div class="player-controls">
@@ -832,6 +860,10 @@
                 
                 <p>Uno spazio speciale dedicato ai grandi autori che hanno raccontato l'isola, traducendone in parole i silenzi, i dilemmi etici, i moti sociali e l'orizzonte infinito.</p>
 
+                <div class="station-poster-wrapper">
+                    <img class="station-poster" data-audio-src="3_letteratura.mp3" alt="Copertina Tappa 3 - Letteratura">
+                </div>
+
                 <div class="custom-player" data-src="3_letteratura.mp3">
                     <div class="player-controls">
                         <button class="play-btn" aria-label="Riproduci guida Letteratura">
@@ -882,6 +914,10 @@
                 </div>
                 
                 <p>La mostra si conclude ripercorrendo le tappe della complessa evoluzione storica e politica istituzionale dell'isola, dalle origini fino alla modernità, per poi congedarsi con i saluti finali dell'esposizione.</p>
+
+                <div class="station-poster-wrapper">
+                    <img class="station-poster" data-audio-src="4_storia_politica_e_saluti.mp3" alt="Copertina Tappa 4 - Storia Politica e Saluti">
+                </div>
 
                 <div class="custom-player" data-src="4_storia_politica_e_saluti.mp3">
                     <div class="player-controls">
@@ -945,28 +981,27 @@
     <a href="#hero" class="back-to-top" id="backToTop" aria-label="Torna in alto">▲</a>
 
     <script>
-        // FUNZIONE AVANZATA: Estrattore nativo ID3v2 per copertina MP3 (APIC Frame)
-        async function estraiLocandinaDaMp3(mp3Url, targetImgId) {
+        // FUNZIONE UNIFICATA: Estrattore nativo ID3v2 per copertine MP3 (APIC Frame)
+        async function estraiEVisualizzaCopertina(mp3Url, imgElement, isMainPoster = false) {
             try {
                 const response = await fetch(mp3Url);
                 if (!response.ok) return;
                 const arrayBuffer = await response.arrayBuffer();
                 const view = new DataView(arrayBuffer);
 
-                // Verifica intestazione "ID3" (Primi 3 byte)
+                // Verifica intestazione "ID3"
                 if (view.getUint8(0) !== 0x49 || view.getUint8(1) !== 0x44 || view.getUint8(2) !== 0x33) return;
 
                 const versione = view.getUint8(3);
-                if (versione !== 3 && versione !== 4) return; // Supporta ID3v2.3 e v2.4
+                if (versione !== 3 && versione !== 4) return;
 
-                // Calcola la dimensione globale dei tag ID3 (Synchsafe integer a 4 byte)
+                // Calcola dimensione globale tag ID3
                 const tagSize = ((view.getUint8(6) & 0x7F) << 21) |
                                 ((view.getUint8(7) & 0x7F) << 14) |
                                 ((view.getUint8(8) & 0x7F) << 7)  |
                                 (view.getUint8(9) & 0x7F);
 
                 let offset = 10;
-                // Cicla tra i frame per cercare il frame "APIC" (Attached Picture)
                 while (offset < tagSize + 10) {
                     let frameId = "";
                     for (let i = 0; i < 4; i++) {
@@ -990,31 +1025,28 @@
                         const encoding = view.getUint8(apicOffset);
                         apicOffset += 1;
 
-                        // Estrae il Mime Type dell'immagine (es. image/jpeg, terminato da 0)
                         let mimeType = "";
                         while (view.getUint8(apicOffset) !== 0) {
                             mimeType += String.fromCharCode(view.getUint8(apicOffset));
                             apicOffset++;
                         }
-                        apicOffset += 1; // Salta lo zero di terminazione
-
-                        const pictureType = view.getUint8(apicOffset); // 0x03 è di solito la cover frontale
                         apicOffset += 1;
 
-                        // Salta la stringa della descrizione in base all'encoding di testo
-                        if (encoding === 1 || encoding === 2) { // UTF-16 (2 zero finali)
+                        const pictureType = view.getUint8(apicOffset);
+                        apicOffset += 1;
+
+                        if (encoding === 1 || encoding === 2) {
                             while (view.getUint8(apicOffset) !== 0 || view.getUint8(apicOffset + 1) !== 0) {
                                 apicOffset += 2;
                             }
                             apicOffset += 2;
-                        } else { // Latin-1 o UTF-8 (1 zero finale)
+                        } else {
                             while (view.getUint8(apicOffset) !== 0) {
                                 apicOffset++;
                             }
                             apicOffset += 1;
                         }
 
-                        // Calcola i dati binari effettivi dell'immagine e crea l'URL sorgente
                         const imgSize = (offset + 10 + frameSize) - apicOffset;
                         if (imgSize <= 0) return;
 
@@ -1022,23 +1054,43 @@
                         const blob = new Blob([imgBuffer], { type: mimeType || 'image/jpeg' });
                         const blobUrl = URL.createObjectURL(blob);
 
-                        // Aggiorna la locandina nella pagina
-                        document.getElementById(targetImgId).src = blobUrl;
+                        // Assegna il link BLOB all'immagine target
+                        imgElement.src = blobUrl;
+
+                        // Se è una copertina di tappa, rendi visibile il suo contenitore di stile
+                        if (!isMainPoster) {
+                            const wrapper = imgElement.closest('.station-poster-wrapper');
+                            if (wrapper) wrapper.style.display = 'block';
+                        }
                         break;
                     }
                     offset += 10 + frameSize;
                 }
             } catch (e) {
-                console.warn("Lettura ID3 bloccata da CORS o protocollo file://. Fallback su locandina.jpg attiva.");
+                console.warn(`Estrazione copertina fallita per ${mp3Url}. Dettaglio: CORS o restrizioni file:// attivo.`);
             }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             
-            // Tenta di estrarre la locandina incorporata nel primo MP3 della directory base
-            estraiLocandinaDaMp3("1_costumi_e_simboli.mp3", "mainPoster");
+            // 1. ESTRAZIONE AUTOMATICA DI TUTTE LE COPERTINE DA MP3
+            // Tenta di estrarre la locandina principale dal primo file audio
+            const mainPosterEl = document.getElementById('mainPoster');
+            if (mainPosterEl) {
+                estraiEVisualizzaCopertina("1_costumi_e_simboli.mp3", mainPosterEl, true);
+            }
 
-            // 1. NOTA INTERATTIVA DINAMICA (AJÒ)
+            // Cicla ed estrae le copertine per ciascuna tappa specifica
+            const stationImages = document.querySelectorAll('.station-poster');
+            stationImages.forEach(img => {
+                const audioSrc = img.getAttribute('data-audio-src');
+                if (audioSrc) {
+                    estraiEVisualizzaCopertina(audioSrc, img, false);
+                }
+            });
+
+
+            // 2. NOTA INTERATTIVA DINAMICA (AJÒ)
             const ajoNote = document.getElementById('ajo-note');
             if (ajoNote) {
                 ajoNote.addEventListener('click', () => {
@@ -1048,7 +1100,7 @@
                 });
             }
 
-            // 2. LOGICA MULTI-PLAYER CON CONTROLLO MUTUO ED ESCLUSIVO
+            // 3. LOGICA MULTI-PLAYER AUDIO CON CONTROLLO MUTUO ED ESCLUSIVO
             const playerElements = document.querySelectorAll('.custom-player');
             const audioObjects = [];
 
@@ -1102,7 +1154,7 @@
                             }
                         });
 
-                        audio.play().catch(err => console.log("File audio non trovato o non riproducibile:", err));
+                        audio.play().catch(err => console.log("Riproduzione bloccata o file mancante:", err));
                         iconPlay.style.display = 'none';
                         iconPause.style.display = 'block';
                     } else {
@@ -1123,7 +1175,7 @@
                 });
             });
 
-            // 3. SCROLL SPY & BOTTONE BACK TO TOP
+            // 4. SCROLL SPY & BOTTONE BACK TO TOP
             const backToTop = document.getElementById('backToTop');
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('section, main > section');
