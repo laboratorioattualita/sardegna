@@ -181,9 +181,10 @@
             width: 100%;
             height: auto;
             display: block;
+            object-fit: contain; /* Garantisce la visualizzazione intera */
         }
 
-        /* NUOVO STILE: COPERTINA DELLE SINGOLE TAPPE (DENTRO LE CARD) */
+        /* COPERTINA DELLE SINGOLE TAPPE (INTERE SENZA RITAGLI) */
         .station-poster-wrapper {
             margin: 1.2rem 0;
             border-radius: 10px;
@@ -191,15 +192,13 @@
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-color);
             max-width: 100%;
-            max-height: 220px; /* Altezza bilanciata ed editoriale */
             display: none; /* Si mostra via JS solo se estratta con successo */
         }
 
         .station-poster {
             width: 100%;
-            height: 100%;
-            max-height: 220px;
-            object-fit: cover; /* Ritaglio panoramico intelligente */
+            height: auto;
+            object-fit: contain; /* Mantiene l'immagine intera senza tagliarla */
             display: block;
         }
 
@@ -735,10 +734,6 @@
                 
                 <p>Benvenuti alla prima stazione della mostra. Questo spazio introduce l'identità visiva, linguistica e antropologica dell'isola, esplorando le radici profonde dei suoi simboli grafici, la specificità della sua lingua e il mistero della sua straordinaria longevità.</p>
 
-                <div class="station-poster-wrapper">
-                    <img class="station-poster" data-audio-src="1_costumi_e_simboli.mp3" alt="Copertina Tappa 1 - Costumi e Simboli">
-                </div>
-
                 <div class="custom-player" data-src="1_costumi_e_simboli.mp3">
                     <div class="player-controls">
                         <button class="play-btn" aria-label="Riproduci guida Costumi e Simboli">
@@ -782,7 +777,7 @@
                 </div>
 
                 <div class="subsection-title">La Terra dei Centenari - Blue Zone</div>
-                <p style="font-size: 9.5pt;">Il conceito di <strong>Blue Zone</strong> evidenzia che l'Ogliastra e la Barbagia hanno una delle più alte concentrazioni di centenari al mondo, con paesi simbolo come Seulo, Osini e Villagrande Strisaili.</p>
+                <p style="font-size: 9.5pt;">Il concetto di <strong>Blue Zone</strong> evidenzia che l'Ogliastra e la Barbagia hanno una delle più alte concentrazioni di centenari al mondo, con paesi simbolo come Seulo, Osini e Villagrande Strisaili.</p>
 
                 <h4 style="font-size: 10pt; color: var(--accent-myrtle); margin-top: 0.5rem; margin-bottom: 0.5rem;">I 6 Pilastri della Longevità Sarda:</h4>
                 <div class="pilastri-grid">
@@ -844,7 +839,7 @@
                     </div>
                     <div class="food-item">
                         <div class="food-name">Il Filu 'e Ferru</div>
-                        <div class="food-desc">L'acquavite tradizionale. Il nome deriva dall'astuzia contadina in epoca di distillazione clandestina: le bottiglie venivano nascoste sottoterra e collegate a un sottile filo di ferro affiorante.</div>
+                        <div class="food-desc">L'acquavite tradicional. Il nome deriva dall'astuzia contadina in epoca di distillazione clandestina: le bottiglie venivano nascoste sottoterra e collegate a un sottile filo di ferro affiorante.</div>
                     </div>
                 </div>
             </div>
@@ -1074,13 +1069,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             
             // 1. ESTRAZIONE AUTOMATICA DI TUTTE LE COPERTINE DA MP3
-            // Tenta di estrarre la locandina principale dal primo file audio
+            // Estrae la locandina principale dal file audio della prima tappa
             const mainPosterEl = document.getElementById('mainPoster');
             if (mainPosterEl) {
                 estraiEVisualizzaCopertina("1_costumi_e_simboli.mp3", mainPosterEl, true);
             }
 
-            // Cicla ed estrae le copertine per ciascuna tappa specifica
+            // Cicla ed estrae le copertine per ciascuna tappa specifica rimasta
             const stationImages = document.querySelectorAll('.station-poster');
             stationImages.forEach(img => {
                 const audioSrc = img.getAttribute('data-audio-src');
