@@ -1,1 +1,1067 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultura della Sardegna - Mostra Multimediale & Audioguida</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS RESET & VARIABLES */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
+        :root {
+            --bg-cream: #fdfbf7;
+            --bg-stone: #f5f0e6;
+            --bg-card: #ffffff;
+            --accent-blue: #0c3c5e;
+            --accent-blue-light: #165685;
+            --accent-myrtle: #1e4631;
+            --accent-myrtle-light: #2c6648;
+            --text-dark: #2c2927;
+            --text-muted: #6e6762;
+            --border-color: #dcd4c4;
+            --font-title: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --shadow-sm: 0 4px 12px rgba(44, 41, 39, 0.04);
+            --shadow-md: 0 12px 24px rgba(44, 41, 39, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            font-family: var(--font-body);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3, h4 {
+            font-family: var(--font-title);
+            font-weight: 600;
+            color: var(--accent-blue);
+        }
+
+        p {
+            font-size: 10.5pt;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            background-color: rgba(253, 251, 247, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: var(--accent-myrtle);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-title);
+            font-weight: bold;
+            font-size: 14pt;
+        }
+
+        .logo-text {
+            font-family: var(--font-title);
+            font-size: 14pt;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--accent-blue);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 9.5pt;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-myrtle);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-myrtle);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 28pt;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-title);
+            font-size: 13pt;
+            font-style: italic;
+            color: var(--accent-myrtle);
+            margin-bottom: 3.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quotes-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .quotes-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .quote-card {
+            background-color: var(--bg-stone);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            text-align: left;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .quote-card::before {
+            content: "“";
+            font-family: var(--font-title);
+            font-size: 60pt;
+            color: rgba(30, 70, 49, 0.1);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-family: var(--font-title);
+            font-size: 12pt;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .quote-author {
+            font-size: 9.5pt;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quote-author::before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 1px;
+            background-color: var(--accent-blue);
+        }
+
+        /* EXHIBITION FLOW LAYOUT */
+        .exhibition-container {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        /* Vertical central line for timeline feel */
+        .exhibition-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 2rem;
+            width: 1px;
+            background-color: var(--border-color);
+            z-index: 1;
+        }
+
+        @media (min-width: 768px) {
+            .exhibition-container::before {
+                left: 50%;
+            }
+        }
+
+        /* STATIONS (CARDS) */
+        .station {
+            position: relative;
+            margin-bottom: 5rem;
+            z-index: 2;
+        }
+
+        .station-badge {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: var(--accent-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-title);
+            font-weight: bold;
+            font-size: 12pt;
+            position: absolute;
+            left: 0.75rem;
+            top: 0;
+            box-shadow: 0 0 0 6px var(--bg-cream);
+        }
+
+        @media (min-width: 768px) {
+            .station-badge {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .station-content {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-left: 4rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .station-content:hover {
+            box-shadow: var(--shadow-md);
+            border-color: #cbd3c1;
+        }
+
+        @media (min-width: 768px) {
+            .station {
+                width: 100%;
+                display: flex;
+            }
+            .station:nth-child(even) {
+                justify-content: flex-end;
+            }
+            .station:nth-child(odd) {
+                justify-content: flex-start;
+            }
+            .station-content {
+                width: 45%;
+                margin-left: 0;
+            }
+        }
+
+        .station-title-block {
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--accent-myrtle);
+            padding-left: 12px;
+        }
+
+        .station-num {
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-myrtle);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .station-title {
+            font-size: 16pt;
+            line-height: 1.3;
+        }
+
+        /* CUSTOM AUDIO PLAYER */
+        .custom-player {
+            background-color: var(--bg-stone);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .play-btn {
+            background-color: var(--accent-myrtle);
+            color: white;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(30, 70, 49, 0.2);
+        }
+
+        .play-btn:hover {
+            background-color: var(--accent-myrtle-light);
+            transform: scale(1.05);
+        }
+
+        .play-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .player-meta {
+            flex-grow: 1;
+        }
+
+        .player-track-title {
+            font-size: 9pt;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 2px;
+        }
+
+        .player-timeline-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            width: 100%;
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            position: relative;
+            height: 6px;
+            background-color: rgba(44, 41, 39, 0.1);
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--accent-myrtle);
+            border-radius: 3px;
+            width: 0%;
+            position: relative;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            font-size: 8.5pt;
+            color: var(--text-muted);
+            font-variant-numeric: tabular-nums;
+            min-width: 35px;
+        }
+
+        /* SPECIFIC CONTENT COMPONENTS */
+        .inner-timeline {
+            margin-top: 1.5rem;
+            border-left: 1px dashed var(--border-color);
+            padding-left: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .inner-timeline-item {
+            position: relative;
+        }
+
+        .inner-timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -19.5px;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent-blue);
+        }
+
+        .inner-timeline-year {
+            font-weight: 600;
+            font-size: 9pt;
+            color: var(--accent-blue);
+            display: block;
+        }
+
+        .inner-timeline-desc {
+            font-size: 9.5pt;
+            color: var(--text-dark);
+        }
+
+        .info-box {
+            background-color: rgba(12, 60, 94, 0.03);
+            border: 1px solid rgba(12, 60, 94, 0.15);
+            border-radius: 8px;
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .info-box-title {
+            font-family: var(--font-title);
+            font-size: 11pt;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .interactive-note {
+            background-color: #f0f5f2;
+            border: 1px solid #d0e1d7;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .interactive-note:hover {
+            background-color: #e5eee9;
+        }
+
+        .note-header {
+            font-weight: 600;
+            font-size: 10pt;
+            color: var(--accent-myrtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .note-body {
+            font-size: 9.5pt;
+            margin-top: 0.5rem;
+            display: none;
+            color: var(--text-dark);
+        }
+
+        .note-body.open {
+            display: block;
+        }
+
+        .toggle-icon {
+            font-size: 12pt;
+            transition: transform 0.3s;
+        }
+
+        .interactive-note.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .pilastri-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-top: 1.2rem;
+        }
+
+        .pilastro-item {
+            background-color: var(--bg-stone);
+            padding: 0.8rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-myrtle);
+            font-size: 9.5pt;
+            font-weight: 500;
+        }
+
+        .food-list {
+            margin-top: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .food-item {
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(44, 41, 39, 0.08);
+        }
+
+        .food-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .food-name {
+            font-weight: 600;
+            color: var(--accent-blue);
+            font-size: 10.5pt;
+            margin-bottom: 0.2rem;
+        }
+
+        .food-desc {
+            font-size: 9.5pt;
+            color: var(--text-muted);
+        }
+
+        .author-profile {
+            margin-top: 1.2rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .author-name {
+            font-family: var(--font-title);
+            font-size: 12pt;
+            color: var(--accent-blue);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-bio {
+            font-size: 9.5pt;
+            color: var(--text-dark);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--accent-blue);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 2rem;
+            margin-top: 4rem;
+            font-size: 9pt;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* BACK TO TOP */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--accent-blue);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--accent-blue-light);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <div class="logo-icon">S</div>
+            <div class="logo-text">SardegnaMultimediale</div>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#stazione1" class="nav-link">Storia</a></li>
+                <li><a href="#stazione2" class="nav-link">Lingua</a></li>
+                <li><a href="#stazione3" class="nav-link">Longevità</a></li>
+                <li><a href="#stazione4" class="nav-link">Sapori</a></li>
+                <li><a href="#stazione5" class="nav-link">Letteratura</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero" class="hero">
+        <h1>Anima di un'Isola</h1>
+        <p class="hero-subtitle">Un viaggio immersivo e sonoro tra la storia millenaria, i custodi della longevità e l'identità fiera della Sardegna.</p>
+        
+        <div class="quotes-container">
+            <div class="quote-card">
+                <p class="quote-text">«La Sardegna è un'altra cosa: più ampia, molto più scalza, profonda, che non finisce mai. È come la libertà stessa.»</p>
+                <div class="quote-author">D.H. Lawrence, "Mare e Sardegna"</div>
+            </div>
+            <div class="quote-card">
+                <p class="quote-text">«La Sardegna in ogni tempo ha respinto le invasioni e le dominazioni straniere con una costante resistenziale, conservando gelosamente la propria identità e le proprie radici ancestrali.»</p>
+                <div class="quote-author">Giovanni Lilliu, Archeologo</div>
+            </div>
+        </div>
+    </section>
+
+    <main class="exhibition-container">
+
+        <section id="stazione1" class="station">
+            <div class="station-badge">1</div>
+            <div class="station-content">
+                <div class="station-title-block">
+                    <span class="station-num">Stazione 01</span>
+                    <h2 class="station-title">Storia e Simboli dell'Isola</h2>
+                </div>
+                
+                <p>Un cammino millenario sospeso nel cuore del Mediterraneo. La Sardegna custodisce una vicenda storica unica, in cui l'isolamento geografico e i contatti culturali hanno forgiato un'anima fieramente indipendente.</p>
+
+                <div class="custom-player" data-src="audio/01_storia_e_simboli.mp3">
+                    <div class="player-controls">
+                        <button class="play-btn" aria-label="Riproduci guida Storia e Simboli">
+                            <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                        </button>
+                        <div class="player-meta">
+                            <div class="player-track-title">Audioguida: Storia e Simboli</div>
+                            <div class="player-timeline-wrapper">
+                                <div class="time-display current-time">0:00</div>
+                                <div class="progress-container">
+                                    <div class="progress-bar"></div>
+                                </div>
+                                <div class="time-display duration">0:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inner-timeline">
+                    <div class="inner-timeline-item">
+                        <span class="inner-timeline-year">Preistoria & Civiltà Nuragica</span>
+                        <span class="inner-timeline-desc">L'era dei nuraghi e dei suggestivi bronzetti, espressione di una civiltà complessa e guerriera.</span>
+                    </div>
+                    <div class="inner-timeline-item">
+                        <span class="inner-timeline-year">Fenici, Romani e Bisanzio</span>
+                        <span class="inner-timeline-desc">Snodo commerciale e provincia imperiale, poi baluardo dell'Impero d'Oriente.</span>
+                    </div>
+                    <div class="inner-timeline-item">
+                        <span class="inner-timeline-year">L'Epoca dei Giudicati</span>
+                        <span class="inner-timeline-desc">Quattro regni sovrani. Spicca il Giudicato di Arborea con la giudicessa Eleonora e la lungimirante "Carta de Logu".</span>
+                    </div>
+                    <div class="inner-timeline-item">
+                        <span class="inner-timeline-year">Corona d'Aragona & i Savoia</span>
+                        <span class="inner-timeline-desc">I secoli del dominio iberico e il passaggio sabaudo al Regno di Sardegna.</span>
+                    </div>
+                    <div class="inner-timeline-item">
+                        <span class="inner-timeline-year">1948 & 1962</span>
+                        <span class="inner-timeline-desc">La proclamazione dello Statuto Speciale d'Autonomia, seguita nel 1962 dal boom della Costa Smeralda fondata dall'Aga Khan.</span>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-box-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        La Bandiera dei Quattro Mori
+                    </div>
+                    <p style="font-size: 9.5pt; margin-bottom: 0; color: var(--text-dark);">
+                        Le origini del vessillo affondano nel Medioevo. Tra la croce di San Giorgio, le tesi aragonesi (la storica battaglia di Alcoraz nel 1096 con le quattro teste dei re mori sconfitti) e l'influenza sardo-pisana, i quattro mori simboleggiano graficamente anche l'unione ideale dei quattro storici Giudicati sardi.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="stazione2" class="station">
+            <div class="station-badge">2</div>
+            <div class="station-content">
+                <div class="station-title-block">
+                    <span class="station-num">Stazione 02</span>
+                    <h2 class="station-title">La Lingua Sarda</h2>
+                </div>
+                
+                <p>Non un semplice dialetto, ma una vera e propria lingua romanza. Il sardo rappresenta un patrimonio storico-acustico straordinario, eccezionalmente conservativo rispetto al latino d'origine.</p>
+
+                <div class="custom-player" data-src="audio/02_lingua_sarda.mp3">
+                    <div class="player-controls">
+                        <button class="play-btn" aria-label="Riproduci guida Lingua Sarda">
+                            <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                        </button>
+                        <div class="player-meta">
+                            <div class="player-track-title">Audioguida: La Lingua Sarda</div>
+                            <div class="player-timeline-wrapper">
+                                <div class="time-display current-time">0:00</div>
+                                <div class="progress-container">
+                                    <div class="progress-bar"></div>
+                                </div>
+                                <div class="time-display duration">0:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="font-size: 10pt;">La lingua sarda è ufficialmente riconosciuta e tutelata dallo Stato italiano tramite la <strong>Legge 482/1999</strong>, la quale protegge complessivamente 12 minoranze linguistiche storiche sul territorio nazionale (tra cui il friulano, il ladino, l'occitano e il catalano parlato ad Alghero).</p>
+                
+                <p style="font-size: 10pt;">Le sue radici preservano tratti fonetici arcaici del latino classico, arricchite nel corso dei secoli da influenze bizantine, pisane, genovesi e catalano-spagnole. Fin dall'epoca giudiziale, il sardo è stato impiegato ufficialmente nei registri amministrativi come i celebri <i>Condaghes</i>.</p>
+
+                <div class="interactive-note" id="ajo-note">
+                    <div class="note-header">
+                        <span>L'espressione iconica: "Ajò!"</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="note-body">
+                        Utilizzata universalmente in tutta l'isola, l'espressione "Ajò!" è un condensato di calore ed energia identitaria. Significa letteralmente "Andiamo!" o "Dai!", ed esprime esortazione, urgenza, ma anche affetto e complicità comunitaria immediata.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stazione3" class="station">
+            <div class="station-badge">3</div>
+            <div class="station-content">
+                <div class="station-title-block">
+                    <span class="station-num">Stazione 03</span>
+                    <h2 class="station-title">La Terra dei Centenari</h2>
+                </div>
+                
+                <p>Nelle aspre vette dell'Ogliastra e della Barbagia si nasconde uno scrigno di eccezionale longevità. Questa macro-regione è stata identificata come una delle pochissime "Blue Zone" del pianeta.</p>
+
+                <div class="custom-player" data-src="audio/03_blue_zone.mp3">
+                    <div class="player-controls">
+                        <button class="play-btn" aria-label="Riproduci guida Blue Zone">
+                            <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                        </button>
+                        <div class="player-meta">
+                            <div class="player-track-title">Audioguida: La Blue Zone</div>
+                            <div class="player-timeline-wrapper">
+                                <div class="time-display current-time">0:00</div>
+                                <div class="progress-container">
+                                    <div class="progress-bar"></div>
+                                </div>
+                                <div class="time-display duration">0:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="font-size: 10pt;">Il concetto scientifico di <strong>Blue Zone</strong> è nato dagli approfonditi studi demografici di Gianni Pes e Michel Poulain, successivamente resi celebri a livello globale dal divulgatore Dan Buettner. Paesi simbolo come Seulo, Osini, Villagrande Strisaili, Arzana e Talana registrano indici di centenari da primato mondiale, specie nella popolazione maschile.</p>
+
+                <h4 style="font-size: 11pt; color: var(--accent-myrtle); margin-top: 1.5rem;">I 6 Pilastri della Longevità Sarda:</h4>
+                <div class="pilastri-grid">
+                    <div class="pilastro-item">Famiglia al Centro</div>
+                    <div class="pilastro-item">Assenza di Fumo</div>
+                    <div class="pilastro-item">Dieta Vegetale & Legumi</div>
+                    <div class="pilastro-item">Attività Fisica Costante</div>
+                    <div class="pilastro-item">Forte Utilità Sociale</div>
+                    <div class="pilastro-item">Vino Ricco di Polifenoli</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stazione4" class="station">
+            <div class="station-badge">4</div>
+            <div class="station-content">
+                <div class="station-title-block">
+                    <span class="station-num">Stazione 04</span>
+                    <h2 class="station-title">Eccellenze e Sapori</h2>
+                </div>
+                
+                <p>La cultura sarda si esprime vigorosamente attraverso la sua enogastronomia ancestrale, tutelata e certificata dal MASAF come riflesso fedele del territorio e della tradizione pastorale.</p>
+
+                <div class="custom-player" data-src="audio/04_sapori.mp3">
+                    <div class="player-controls">
+                        <button class="play-btn" aria-label="Riproduci guida Eccellenze e Sapori">
+                            <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                        </button>
+                        <div class="player-meta">
+                            <div class="player-track-title">Audioguida: Eccellenze e Sapori</div>
+                            <div class="player-timeline-wrapper">
+                                <div class="time-display current-time">0:00</div>
+                                <div class="progress-container">
+                                    <div class="progress-bar"></div>
+                                </div>
+                                <div class="time-display duration">0:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="food-list">
+                    <div class="food-item">
+                        <div class="food-name">Fiore Sardo DOP</div>
+                        <div class="food-desc">Pecorino ovino nobile e arcaico, stagionato a latte crudo e affumicato in Barbagia. È unico anche per il caratteristico bollino edibile in caseina a forma di fiore applicato sul piatto della forma per garantirne l'assoluta rintracciabilità.</div>
+                    </div>
+                    <div class="food-item">
+                        <div class="food-name">Birra Ichnusa</div>
+                        <div class="food-desc">Nata nel 1912 a Cagliari grazie ad Amsicora Capra. Il nome richiama il greco antico "Ichnôussa", l'impronta impressa dal piede divino sul mare. Anche sotto la gestione del gruppo Heineken, la birra difende con orgoglio l'autenticità dello stabilimento storico di Assemini.</div>
+                    </div>
+                    <div class="food-item">
+                        <div class="food-name">Il Mirto</div>
+                        <div class="food-desc">Liquore icona della macchia mediterranea. Deriva da un'antica formula domestica dell'Ottocento basata sull'infusione idroalcolica di bacche mature e foglie odorose.</div>
+                    </div>
+                    <div class="food-item">
+                        <div class="food-name">Il Filu 'e Ferru</div>
+                        <div class="food-desc">La leggendaria acquavite sarda. Il nome risale all'epoca della distillazione clandestina: per eludere i controlli fiscali, i produttori nascondevano gli alambicchi sottoterra, lasciando spuntare solo un sottilissimo filo di ferro per ritrovarne la precisa posizione.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stazione5" class="station">
+            <div class="station-badge">5</div>
+            <div class="station-content">
+                <div class="station-title-block">
+                    <span class="station-num">Stazione 05</span>
+                    <h2 class="station-title">Voci della Letteratura</h2>
+                </div>
+                
+                <p>Grandi menti e penne profonde hanno tradotto in parole i silenzi, i tormenti e i paesaggi infiniti della Sardegna, consegnandoli alla cultura universale.</p>
+
+                <div class="custom-player" data-src="audio/05_letteratura.mp3">
+                    <div class="player-controls">
+                        <button class="play-btn" aria-label="Riproduci guida Voci della Letteratura">
+                            <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                        </button>
+                        <div class="player-meta">
+                            <div class="player-track-title">Audioguida: Letteratura Sarda</div>
+                            <div class="player-timeline-wrapper">
+                                <div class="time-display current-time">0:00</div>
+                                <div class="progress-container">
+                                    <div class="progress-bar"></div>
+                                </div>
+                                <div class="time-display duration">0:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="author-profile">
+                    <div class="author-name">Grazia Deledda</div>
+                    <div class="author-bio">Nata a Nuoro, vincitrice del Premio Nobel per la Letteratura nel 1926 (unica donna italiana della storia). Nei suoi romanzi immortali come "Canne al vento" ha raccontato passioni, fatalismi e codici d'onore immutabili.</div>
+                </div>
+
+                <div class="author-profile">
+                    <div class="author-name">Antonio Gramsci & Emilio Lussu</div>
+                    <div class="author-bio">Pilastri del pensiero critico e civile nazionale. Gramsci analizzò le dinamiche regionali meridionali, mentre Lussu, in opere come "Un anno sull'Altipiano", gettò le basi ideali del movimento autonomista e del sardismo democratico.</div>
+                </div>
+
+                <div class="author-profile">
+                    <div class="author-name">Michela Murgia</div>
+                    <div class="author-bio">Straordinaria intellettuale sarda contemporanea. Con "Accabadora" ha squarciato il velo sulle antiche e complesse architetture antropologiche ed etiche delle comunità rurali interne dell'isola.</div>
+                </div>
+
+                <div class="author-profile">
+                    <div class="author-name">Sguardi Internazionali</div>
+                    <div class="author-bio">L'aspro fascino della Sardegna ha conquistato autori globali del calibro di D.H. Lawrence, affascinato dal concetto di libertà spaziale dell'isola, e James Joyce, profondamente incuriosito dalle particolarità fonetiche sarde.</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+            <div class="logo-icon" style="background-color: var(--bg-cream); color: var(--accent-blue);">S</div>
+            <div class="logo-text" style="color: white;">SardegnaMultimediale</div>
+        </div>
+        <p>&copy; 2026 Mostra Digitale sulla Cultura Sarda. Tutti i diritti riservati.</p>
+        <p style="font-size: 8pt; margin-top: 0.5rem; opacity: 0.6;">I percorsi audio puntano alla cartella locale /audio.</p>
+    </footer>
+
+    <a href="#hero" class="back-to-top" id="backToTop" aria-label="Torna in alto">▲</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. NOTA INTERATTIVA DINAMICA (AJÒ)
+            const ajoNote = document.getElementById('ajo-note');
+            if (ajoNote) {
+                ajoNote.addEventListener('click', () => {
+                    ajoNote.classList.toggle('active');
+                    const body = ajoNote.querySelector('.note-body');
+                    body.classList.toggle('open');
+                });
+            }
+
+            // 2. LOGICA MULTI-PLAYER CON CONTROLLO MUTUO ED ESCLUSIVO
+            const playerElements = document.querySelectorAll('.custom-player');
+            const audioObjects = [];
+
+            playerElements.forEach((player, index) => {
+                const src = player.getAttribute('data-src');
+                const playBtn = player.querySelector('.play-btn');
+                const iconPlay = player.querySelector('.icon-play');
+                const iconPause = player.querySelector('.icon-pause');
+                const progressContainer = player.querySelector('.progress-container');
+                const progressBar = player.querySelector('.progress-bar');
+                const currentTimeDisplay = player.querySelector('.current-time');
+                const durationDisplay = player.querySelector('.duration');
+
+                // Inizializza oggetto Audio nativo
+                const audio = new Audio(src);
+                audioObjects.push(audio);
+
+                // Formatta i secondi in stringa mm:ss
+                function formatTime(secs) {
+                    if (isNaN(secs)) return "0:00";
+                    const minutes = Math.floor(secs / 60);
+                    const seconds = Math.floor(secs % 60);
+                    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                }
+
+                // Assegna durata al caricamento dei metadati
+                audio.addEventListener('loadedmetadata', () => {
+                    durationDisplay.textContent = formatTime(audio.duration);
+                });
+
+                // Aggiorna costantemente la barra di avanzamento durante la riproduzione
+                audio.addEventListener('timeupdate', () => {
+                    if (audio.duration) {
+                        const percentage = (audio.currentTime / audio.duration) * 100;
+                        progressBar.style.width = `${percentage}%`;
+                        currentTimeDisplay.textContent = formatTime(audio.currentTime);
+                    }
+                });
+
+                // Gestione fine traccia
+                audio.addEventListener('ended', () => {
+                    iconPause.style.display = 'none';
+                    iconPlay.style.display = 'block';
+                    progressBar.style.width = '0%';
+                    currentTimeDisplay.textContent = "0:00";
+                });
+
+                // Play / Pause Toggle con Controllo Mutuo Esclusivo
+                playBtn.addEventListener('click', () => {
+                    if (audio.paused) {
+                        // Mette in pausa qualsiasi altro audio attivo nella pagina
+                        audioObjects.forEach((otherAudio, otherIndex) => {
+                            if (otherIndex !== index) {
+                                otherAudio.pause();
+                                const otherPlayer = playerElements[otherIndex];
+                                otherPlayer.querySelector('.icon-pause').style.display = 'none';
+                                otherPlayer.querySelector('.icon-play').style.display = 'block';
+                            }
+                        });
+
+                        // Avvia audio selezionato
+                        audio.play().catch(err => console.log("Riproduzione bloccata o file non ancora presente:", err));
+                        iconPlay.style.display = 'none';
+                        iconPause.style.display = 'block';
+                    } else {
+                        // Mette in pausa l'audio corrente
+                        audio.pause();
+                        iconPause.style.display = 'none';
+                        iconPlay.style.display = 'block';
+                    }
+                });
+
+                // Barra di avanzamento (Timeline) interattiva e cliccabile
+                progressContainer.addEventListener('click', (e) => {
+                    const rect = progressContainer.getBoundingClientRect();
+                    const clickX = e.clientX - rect.left;
+                    const width = rect.width;
+                    if (audio.duration) {
+                        const newTime = (clickX / width) * audio.duration;
+                        audio.currentTime = newTime;
+                    }
+                });
+            });
+
+            // 3. SCROLL SPY & BOTTONE BACK TO TOP
+            const backToTop = document.getElementById('backToTop');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+
+            window.addEventListener('scroll', () => {
+                // Mostra/Nascondi bottone per tornare in alto
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+
+                // Evidenziazione dinamica della voce del menu in base allo scroll (Scroll Spy)
+                let currentSectionId = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 120;
+                    if (window.scrollY >= sectionTop) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
