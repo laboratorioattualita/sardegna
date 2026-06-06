@@ -105,7 +105,6 @@
             transform: scale(1.03);
         }
 
-        /* Classe per nascondere l'overlay con effetto sfocatura/dissolvenza */
         .welcome-overlay.hidden {
             opacity: 0;
             visibility: hidden;
@@ -702,6 +701,88 @@
             color: var(--text-dark);
         }
 
+        /* STILI DEDICATI AL QUESTIONARIO */
+        .feedback-form {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+        }
+
+        .rating-options {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        .rating-label, .checkbox-label {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        .feedback-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-cream);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            resize: vertical;
+            transition: var(--transition);
+        }
+
+        .feedback-form textarea:focus {
+            outline: none;
+            border-color: var(--accent-myrtle);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(30, 70, 49, 0.08);
+        }
+
+        .submit-form-btn {
+            background-color: var(--accent-myrtle);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 0.95rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            align-self: flex-start;
+            box-shadow: 0 2px 6px rgba(30, 70, 49, 0.15);
+        }
+
+        .submit-form-btn:hover {
+            background-color: var(--accent-myrtle-light);
+            transform: translateY(-2px);
+        }
+
         /* FOOTER */
         footer {
             background-color: var(--accent-blue);
@@ -760,6 +841,15 @@
         .bg-music-toggle .icon-pause { display: none; }
         .bg-music-toggle.playing .icon-pause { display: block; }
         .bg-music-toggle.playing .icon-play { display: none; }
+
+        @media (max-width: 480px) {
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+            .rating-options {
+                gap: 0.6rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -775,8 +865,8 @@
 
     <!-- AUDIO DI SOTTOFONDO (Formato ogg leggero + fallback mp3) -->
     <audio id="bgMusic" loop>
-        <source src="musica_sottofondo.ogg" type="audio/ogg">
-        <source src="musica_sottofondo.mp3" type="audio/mpeg">
+        <source src="No potho reposare.ogg" type="audio/ogg">
+        <source src="No potho reposare.mp3" type="audio/mpeg">
     </audio>
 
     <header>
@@ -797,7 +887,7 @@
 
     <section id="hero" class="hero">
         <h1>Anima di un'Isola</h1>
-        <p class="hero-subtitle">Un viaggio immersivo e sonoro tra i simboli identitari, le excellenze dei sapori, le voci letterarie e il cammino storico della Sardegna.</p>
+        <p class="hero-subtitle">Un viaggio immersivo e sonoro tra i simboli identitari, le eccellenze dei sapori, le voci letterarie e il cammino storico della Sardegna.</p>
         
         <div class="poster-wrapper">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Flag_of_Sardinia.svg/1920px-Flag_of_Sardinia.svg.png" alt="Bandiera della Sardegna - I Quattro Mori" class="exhibition-poster">
@@ -995,7 +1085,7 @@
 
                 <div class="author-profile">
                     <div class="author-name">Gli Sguardi Internazionali</div>
-                    <div class="author-bio">L'isola ha affascinato anche grandi menti internazionali come D.H. Lawrence, che ne catturò la selvaggia e fiera spazialità, e James Joyce, incuriosito dalla peculiare expressione linguistica sarda.</div>
+                    <div class="author-bio">L'isola ha affascinato anche grandi menti internazionali come D.H. Lawrence, che ne catturò la selvaggia e fiera spazialità, e James Joyce, incuriosito dalla peculiare espressione linguistica sarda.</div>
                 </div>
             </div>
         </section>
@@ -1061,6 +1151,75 @@
                         Si conclude qui il percorso multimediale. Questa audioguida ha cercato di riassumere i fili invisibili e indissolubili che legano l'archeologia, i sapori, la lingua e la letteratura di un'isola senza tempo. Buon proseguimento.
                     </p>
                 </div>
+            </div>
+        </section>
+
+        <!-- SEZIONE QUESTIONARIO DI GRADIMENTO CON ENDPOINT REALE -->
+        <section id="questionario" class="station">
+            <div class="station-badge">?</div>
+            <div class="station-content">
+                <div class="station-title-block">
+                    <span class="station-num">Feedback</span>
+                    <h2 class="station-title">Esprimi il tuo gradimento</h2>
+                </div>
+                
+                <p>Il viaggio nell'Anima dell'Isola si arricchisce con lo sguardo di chi la visita. Aiutaci a migliorare l'esperienza di questa mostra multimediale.</p>
+
+                <form action="https://formspree.io/f/mgobopde" method="POST" class="feedback-form">
+                    
+                    <!-- Domanda 1: Valutazione generale -->
+                    <div class="form-group">
+                        <label class="form-label">1. Come valuti l'esperienza complessiva della mostra?</label>
+                        <div class="rating-options">
+                            <label class="rating-label"><input type="radio" name="valutazione_globale" value="1" required> 1⭐</label>
+                            <label class="rating-label"><input type="radio" name="valutazione_globale" value="2"> 2⭐</label>
+                            <label class="rating-label"><input type="radio" name="valutazione_globale" value="3"> 3⭐</label>
+                            <label class="rating-label"><input type="radio" name="valutazione_globale" value="4"> 4⭐</label>
+                            <label class="rating-label"><input type="radio" name="valutazione_globale" value="5"> 5⭐</label>
+                        </div>
+                    </div>
+
+                    <!-- Domanda 2: Contenuto preferito -->
+                    <div class="form-group">
+                        <label class="form-label">2. Quale sezione del percorso espositivo hai trovato più interessante?</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label"><input type="radio" name="sezione_preferita" value="Simboli e Cultura" required> Stazione 1: Costumi e Simboli</label>
+                            <label class="checkbox-label"><input type="radio" name="sezione_preferita" value="Cibo e Sapori"> Stazione 2: Cibo e Sapori</label>
+                            <label class="checkbox-label"><input type="radio" name="sezione_preferita" value="Letteratura"> Stazione 3: Grandi Scrittori</label>
+                            <label class="checkbox-label"><input type="radio" name="sezione_preferita" value="Storia"> Stazione 4: Storia e Autonomia</label>
+                            <label class="checkbox-label"><input type="radio" name="sezione_preferita" value="Tutte"> Tutte ugualmente interessanti</label>
+                        </div>
+                    </div>
+
+                    <!-- Domanda 3: Valutazione dell'esperienza audio -->
+                    <div class="form-group">
+                        <label class="form-label">3. Come hai trovato l'esperienza sonora (audioguide e musica di sottofondo)?</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label"><input type="radio" name="esperienza_audio" value="Eccellente" required> Eccellente e immersiva</label>
+                            <label class="checkbox-label"><input type="radio" name="esperienza_audio" value="Buona"> Buona e chiara</label>
+                            <label class="checkbox-label"><input type="radio" name="esperienza_audio" value="Musica troppo alta"> La musica copriva la voce</label>
+                            <label class="checkbox-label"><input type="radio" name="esperienza_audio" value="Problemi tecnici"> Ho avuto problemi a far partire l'audio</label>
+                        </div>
+                    </div>
+
+                    <!-- Domanda 4: Semplicità d'uso del sito -->
+                    <div class="form-group">
+                        <label class="form-label">4. Il sito e i player audio sono stati facili e intuitivi da usare?</label>
+                        <div class="rating-options">
+                            <label class="rating-label"><input type="radio" name="facilita_uso" value="Sì" required> Sì, molto</label>
+                            <label class="rating-label"><input type="radio" name="facilita_uso" value="Abbastanza"> Abbastanza</label>
+                            <label class="rating-label"><input type="radio" name="facilita_uso" value="No"> No, ho riscontrato difficoltà</label>
+                        </div>
+                    </div>
+
+                    <!-- Domanda 5: Suggerimenti liberi -->
+                    <div class="form-group">
+                        <label class="form-label" for="suggerimenti">5. Hai suggerimenti o altre tematiche sarde che vorresti vedere incluse?</label>
+                        <textarea id="suggerimenti" name="suggerimenti" rows="4" placeholder="Scrivi qui i tuoi consigli (es. artigianato, canti a tenore, feste tradizionali...)"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-form-btn">Invia il mio Feedback</button>
+                </form>
             </div>
         </section>
 
