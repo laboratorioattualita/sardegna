@@ -47,6 +47,71 @@
             padding-bottom: 60px;
         }
 
+        /* SCHERMATA INIZIALE DI BENVENUTO (DISCLAIMER & SBLOCCO AUDIO) */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            padding: 2rem;
+        }
+
+        .welcome-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 3.5rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            max-width: 550px;
+            width: 100%;
+        }
+
+        .welcome-box h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-box p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .enter-btn {
+            background-color: var(--accent-myrtle);
+            color: white;
+            border: none;
+            padding: 0.9rem 2.5rem;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(30, 70, 49, 0.15);
+        }
+
+        .enter-btn:hover {
+            background-color: var(--accent-myrtle-light);
+            transform: scale(1.03);
+        }
+
+        /* Classe per nascondere l'overlay con effetto sfocatura/dissolvenza */
+        .welcome-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
         /* TIPOGRAFIA EDITORIALE */
         h1, h2, h3, h4 {
             font-family: var(--font-title);
@@ -55,7 +120,7 @@
         }
 
         p {
-            font-size: 10.5pt;
+            font-size: 14px;
             font-weight: 400;
             color: var(--text-dark);
             margin-bottom: 1rem;
@@ -92,12 +157,12 @@
             color: white;
             font-family: var(--font-title);
             font-weight: bold;
-            font-size: 14pt;
+            font-size: 1.1rem;
         }
 
         .logo-text {
             font-family: var(--font-title);
-            font-size: 14pt;
+            font-size: 1.1rem;
             font-weight: 700;
             letter-spacing: 0.5px;
             color: var(--accent-blue);
@@ -112,7 +177,7 @@
         .nav-link {
             text-decoration: none;
             color: var(--text-muted);
-            font-size: 9.5pt;
+            font-size: 0.85rem;
             font-weight: 500;
             transition: var(--transition);
             padding: 0.5rem 0;
@@ -143,7 +208,7 @@
         }
 
         .hero h1 {
-            font-size: 28pt;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
             line-height: 1.2;
             letter-spacing: -0.5px;
@@ -151,7 +216,7 @@
 
         .hero-subtitle {
             font-family: var(--font-title);
-            font-size: 13pt;
+            font-size: 1.2rem;
             font-style: italic;
             color: var(--accent-myrtle);
             margin-bottom: 2.5rem;
@@ -160,10 +225,10 @@
             margin-right: auto;
         }
 
-        /* STILE DELLA LOCANDINA PRINCIPALE (BANDIERA DELLA SARDEGNA) */
+        /* STILE DELLA LOCANDINA PRINCIPALE */
         .poster-wrapper {
             margin: 0 auto 3.5rem auto;
-            max-width: 550px; /* Leggermente allargata per valorizzare la bandiera */
+            max-width: 550px;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow-md);
@@ -181,10 +246,10 @@
             width: 100%;
             height: auto;
             display: block;
-            object-fit: contain; /* Visualizzazione intera e proporzionata senza tagli */
+            object-fit: contain;
         }
 
-        /* COPERTINE DELLE SINGOLE TAPPE (INTERE SENZA RITAGLI) */
+        /* COPERTINE DELLE SINGOLE TAPPE */
         .station-poster-wrapper {
             margin: 1.2rem 0;
             border-radius: 10px;
@@ -192,13 +257,13 @@
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-color);
             max-width: 100%;
-            display: none; /* Si mostra via JS solo dopo che l'estrazione ha avuto successo */
+            display: none;
         }
 
         .station-poster {
             width: 100%;
             height: auto;
-            object-fit: contain; /* Garantisce l'immagine intera e proporzionata */
+            object-fit: contain;
             display: block;
         }
 
@@ -229,7 +294,7 @@
         .quote-card::before {
             content: "“";
             font-family: var(--font-title);
-            font-size: 60pt;
+            font-size: 4.5rem;
             color: rgba(30, 70, 49, 0.1);
             position: absolute;
             top: -10px;
@@ -239,7 +304,7 @@
 
         .quote-text {
             font-family: var(--font-title);
-            font-size: 12pt;
+            font-size: 1.1rem;
             font-style: italic;
             line-height: 1.6;
             color: var(--text-dark);
@@ -247,7 +312,7 @@
         }
 
         .quote-author {
-            font-size: 9.5pt;
+            font-size: 0.85rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -308,7 +373,7 @@
             justify-content: center;
             font-family: var(--font-title);
             font-weight: bold;
-            font-size: 12pt;
+            font-size: 1.1rem;
             position: absolute;
             left: 0.75rem;
             top: 0;
@@ -361,7 +426,7 @@
         }
 
         .station-num {
-            font-size: 8.5pt;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: var(--accent-myrtle);
@@ -371,7 +436,7 @@
         }
 
         .station-title {
-            font-size: 16pt;
+            font-size: 1.35rem;
             line-height: 1.3;
         }
 
@@ -425,7 +490,7 @@
         }
 
         .player-track-title {
-            font-size: 9pt;
+            font-size: 0.85rem;
             font-weight: 600;
             color: var(--accent-blue);
             margin-bottom: 2px;
@@ -457,7 +522,7 @@
         }
 
         .time-display {
-            font-size: 8.5pt;
+            font-size: 0.8rem;
             color: var(--text-muted);
             font-variant-numeric: tabular-nums;
             min-width: 35px;
@@ -466,7 +531,7 @@
         /* COMPONENTI GRAFICI DI SEZIONE */
         .subsection-title {
             font-family: var(--font-title);
-            font-size: 12pt;
+            font-size: 1.1rem;
             color: var(--accent-blue);
             margin-top: 1.5rem;
             margin-bottom: 0.6rem;
@@ -500,13 +565,13 @@
 
         .inner-timeline-year {
             font-weight: 600;
-            font-size: 9pt;
+            font-size: 0.85rem;
             color: var(--accent-blue);
             display: block;
         }
 
         .inner-timeline-desc {
-            font-size: 9.5pt;
+            font-size: 0.85rem;
             color: var(--text-dark);
         }
 
@@ -521,7 +586,7 @@
 
         .info-box-title {
             font-family: var(--font-title);
-            font-size: 11pt;
+            font-size: 1rem;
             font-weight: 600;
             color: var(--accent-blue);
             margin-bottom: 0.5rem;
@@ -546,7 +611,7 @@
 
         .note-header {
             font-weight: 600;
-            font-size: 10pt;
+            font-size: 0.9rem;
             color: var(--accent-myrtle);
             display: flex;
             justify-content: space-between;
@@ -554,7 +619,7 @@
         }
 
         .note-body {
-            font-size: 9.5pt;
+            font-size: 0.85rem;
             margin-top: 0.5rem;
             display: none;
             color: var(--text-dark);
@@ -565,7 +630,7 @@
         }
 
         .toggle-icon {
-            font-size: 12pt;
+            font-size: 1rem;
             transition: transform 0.3s;
         }
 
@@ -586,7 +651,7 @@
             padding: 0.8rem;
             border-radius: 6px;
             border-left: 3px solid var(--accent-myrtle);
-            font-size: 9.5pt;
+            font-size: 0.85rem;
             font-weight: 500;
         }
 
@@ -610,12 +675,12 @@
         .food-name {
             font-weight: 600;
             color: var(--accent-blue);
-            font-size: 10.5pt;
+            font-size: 0.95rem;
             margin-bottom: 0.2rem;
         }
 
         .food-desc {
-            font-size: 9.5pt;
+            font-size: 0.85rem;
             color: var(--text-muted);
         }
 
@@ -627,13 +692,13 @@
 
         .author-name {
             font-family: var(--font-title);
-            font-size: 12pt;
+            font-size: 1.1rem;
             color: var(--accent-blue);
             margin-bottom: 0.2rem;
         }
 
         .author-bio {
-            font-size: 9.5pt;
+            font-size: 0.85rem;
             color: var(--text-dark);
         }
 
@@ -644,7 +709,7 @@
             text-align: center;
             padding: 2.5rem 2rem;
             margin-top: 4rem;
-            font-size: 9pt;
+            font-size: 0.8rem;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
 
@@ -652,25 +717,30 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
-        /* TORNA IN ALTO */
-        .back-to-top {
+        /* CONTROLLI FLUTTUANTI */
+        .back-to-top, .bg-music-toggle {
             position: fixed;
             bottom: 2rem;
-            right: 2rem;
             background-color: var(--accent-blue);
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             box-shadow: var(--shadow-md);
-            opacity: 0;
-            pointer-events: none;
             transition: var(--transition);
             z-index: 99;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-to-top {
+            right: 2rem;
+            opacity: 0;
+            pointer-events: none;
         }
 
         .back-to-top.visible {
@@ -678,13 +748,36 @@
             pointer-events: auto;
         }
 
-        .back-to-top:hover {
+        .bg-music-toggle {
+            left: 2rem;
+        }
+
+        .back-to-top:hover, .bg-music-toggle:hover {
             background-color: var(--accent-blue-light);
             transform: translateY(-3px);
         }
+
+        .bg-music-toggle .icon-pause { display: none; }
+        .bg-music-toggle.playing .icon-pause { display: block; }
+        .bg-music-toggle.playing .icon-play { display: none; }
     </style>
 </head>
 <body>
+
+    <!-- SCHERMATA INIZIALE (TRUCCHETTO SBLOCCO AUDIO & DISCLAIMER) -->
+    <div id="welcomeOverlay" class="welcome-overlay">
+        <div class="welcome-box">
+            <h2>Benvenuto nella Mostra</h2>
+            <p>Ci scusiamo per eventuali imprecisioni presenti nell'audioguida. Il percorso include contenuti sonori e musica tradizionale sarda.</p>
+            <button id="enterBtn" class="enter-btn">Entra ed Ascolta</button>
+        </div>
+    </div>
+
+    <!-- AUDIO DI SOTTOFONDO (Formato ogg leggero + fallback mp3) -->
+    <audio id="bgMusic" loop>
+        <source src="musica_sottofondo.ogg" type="audio/ogg">
+        <source src="musica_sottofondo.mp3" type="audio/mpeg">
+    </audio>
 
     <header>
         <div class="logo">
@@ -704,7 +797,7 @@
 
     <section id="hero" class="hero">
         <h1>Anima di un'Isola</h1>
-        <p class="hero-subtitle">Un viaggio immersivo e sonoro tra i simboli identitari, le eccellenze dei sapori, le voci letterarie e il cammino storico della Sardegna.</p>
+        <p class="hero-subtitle">Un viaggio immersivo e sonoro tra i simboli identitari, le excellenze dei sapori, le voci letterarie e il cammino storico della Sardegna.</p>
         
         <div class="poster-wrapper">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Flag_of_Sardinia.svg/1920px-Flag_of_Sardinia.svg.png" alt="Bandiera della Sardegna - I Quattro Mori" class="exhibition-poster">
@@ -724,6 +817,7 @@
 
     <main class="exhibition-container">
 
+        <!-- STAZIONE 1 -->
         <section id="stazione1" class="station">
             <div class="station-badge">1</div>
             <div class="station-content">
@@ -732,7 +826,7 @@
                     <h2 class="station-title">Costumi, Simboli e Identità</h2>
                 </div>
                 
-                <p>Benvenuti alla prima stazione della mostra. Questo spazio introduce l'identità visiva, linguisticofantropologica dell'isola, esplorando le radici profonde dei suoi simboli grafici, la specificità della sua lingua e il mistero della sua straordinaria longevità.</p>
+                <p>Benvenuti alla prima stazione della mostra. Questo spazio introduce l'identità visiva, linguistico-antropologica dell'isola, esplorando le radici profonde dei suoi simboli grafici, la specificità della sua lingua e il mistero della sua straordinaria longevità.</p>
 
                 <div class="station-poster-wrapper">
                     <img class="station-poster" data-audio-src="1_costumi_e_simboli.mp3" alt="Copertina Tappa 1 - Costumi, Simboli e Identità">
@@ -762,13 +856,13 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                         La Bandiera dei Quattro Mori & i Costumi
                     </div>
-                    <p style="font-size: 9.5pt; margin-bottom: 0; color: var(--text-dark);">
+                    <p style="font-size: 0.85rem; margin-bottom: 0; color: var(--text-dark);">
                         Le origini del vessillo affondano nel Medioevo. Tra la croce di San Giorgio, le tesi aragonesi e l'influenza sardo-pisana, i quattro mori simboleggiano graficamente l'unione ideale dei quattro storici Giudicati sardi. Accanto ad essi, i raffinati costumi tradizionali tessono la trama visiva delle comunità dell'isola.
                     </p>
                 </div>
 
                 <div class="subsection-title">La Lingua Sarda</div>
-                <p style="font-size: 9.5pt;">Il sardo è una lingua storica di minoranza ufficialmente riconosciuta e tutelata dalla <strong>Legge 482/1999</strong>. Ha radici arcaiche latine e influenze storiche derivanti dall'uso nei Giudicati.</p>
+                <p style="font-size: 0.85rem;">Il sardo è una lingua storica di minoranza ufficialmente riconosciuta e tutelata dalla <strong>Legge 482/1999</strong>. Ha radici arcaiche latine e influenze storiche derivanti dall'uso nei Giudicati.</p>
 
                 <div class="interactive-note" id="ajo-note">
                     <div class="note-header">
@@ -781,9 +875,9 @@
                 </div>
 
                 <div class="subsection-title">La Terra dei Centenari - Blue Zone</div>
-                <p style="font-size: 9.5pt;">Il concept di <strong>Blue Zone</strong> evidenzia che l'Ogliastra e la Barbagia hanno una delle più alte concentrazioni di centenari al mondo, con paesi simbolo come Seulo, Osini e Villagrande Strisaili.</p>
+                <p style="font-size: 0.85rem;">Il concept di <strong>Blue Zone</strong> evidenzia che l'Ogliastra e la Barbagia hanno una delle più alte concentrazioni di centenari al mondo, con paesi simbolo come Seulo, Osini e Villagrande Strisaili.</p>
 
-                <h4 style="font-size: 10pt; color: var(--accent-myrtle); margin-top: 0.5rem; margin-bottom: 0.5rem;">I 6 Pilastri della Longevità Sarda:</h4>
+                <h4 style="font-size: 0.9rem; color: var(--accent-myrtle); margin-top: 0.5rem; margin-bottom: 0.5rem;">I 6 Pilastri della Longevità Sarda:</h4>
                 <div class="pilastri-grid">
                     <div class="pilastro-item">Famiglia al Centro</div>
                     <div class="pilastro-item">Assenza di Fumo</div>
@@ -795,6 +889,7 @@
             </div>
         </section>
 
+        <!-- STAZIONE 2 -->
         <section id="stazione2" class="station">
             <div class="station-badge">2</div>
             <div class="station-content">
@@ -849,6 +944,7 @@
             </div>
         </section>
 
+        <!-- STAZIONE 3 -->
         <section id="stazione3" class="station">
             <div class="station-badge">3</div>
             <div class="station-content">
@@ -899,11 +995,12 @@
 
                 <div class="author-profile">
                     <div class="author-name">Gli Sguardi Internazionali</div>
-                    <div class="author-bio">L'isola ha affascinato anche grandi menti internazionali come D.H. Lawrence, che ne catturò la selvaggia e fiera spazialità, e James Joyce, incuriosito dalla peculiare espressione linguistica sarda.</div>
+                    <div class="author-bio">L'isola ha affascinato anche grandi menti internazionali come D.H. Lawrence, che ne catturò la selvaggia e fiera spazialità, e James Joyce, incuriosito dalla peculiare expressione linguistica sarda.</div>
                 </div>
             </div>
         </section>
 
+        <!-- STAZIONE 4 -->
         <section id="stazione4" class="station">
             <div class="station-badge">4</div>
             <div class="station-content">
@@ -960,7 +1057,7 @@
                     <div class="info-box-title" style="color: var(--accent-myrtle);">
                         Grazie per la visita
                     </div>
-                    <p style="font-size: 9.5pt; margin-bottom: 0; color: var(--text-dark);">
+                    <p style="font-size: 0.85rem; margin-bottom: 0; color: var(--text-dark);">
                         Si conclude qui il percorso multimediale. Questa audioguida ha cercato di riassumere i fili invisibili e indissolubili che legano l'archeologia, i sapori, la lingua e la letteratura di un'isola senza tempo. Buon proseguimento.
                     </p>
                 </div>
@@ -977,6 +1074,12 @@
         <p>&copy; 2026 Mostra Digitale sulla Cultura Sarda. Tutti i diritti riservati.</p>
     </footer>
 
+    <!-- INTERFACCIA FLUTTUANTE BOTTONI -->
+    <button id="audioToggle" class="bg-music-toggle" aria-label="Controlla musica di sottofondo">
+        <svg class="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+        <svg class="icon-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+
     <a href="#hero" class="back-to-top" id="backToTop" aria-label="Torna in alto">▲</a>
 
     <script>
@@ -988,13 +1091,11 @@
                 const arrayBuffer = await response.arrayBuffer();
                 const view = new DataView(arrayBuffer);
 
-                // Verifica intestazione "ID3"
                 if (view.getUint8(0) !== 0x49 || view.getUint8(1) !== 0x44 || view.getUint8(2) !== 0x33) return;
 
                 const versione = view.getUint8(3);
                 if (versione !== 3 && versione !== 4) return;
 
-                // Calcola dimensione globale tag ID3
                 const tagSize = ((view.getUint8(6) & 0x7F) << 21) |
                                 ((view.getUint8(7) & 0x7F) << 14) |
                                 ((view.getUint8(8) & 0x7F) << 7)  |
@@ -1014,7 +1115,7 @@
                         frameSize = ((view.getUint8(offset + 4) & 0x7F) << 21) |
                                     ((view.getUint8(offset + 5) & 0x7F) << 14) |
                                     ((view.getUint8(offset + 6) & 0x7F) << 7)  |
-                                    ((view.getUint8(offset + 7) & 0x7F));
+                                    ((view.getUint8(offset + 7)));
                     }
 
                     if (frameSize <= 0) break;
@@ -1053,10 +1154,8 @@
                         const blob = new Blob([imgBuffer], { type: mimeType || 'image/jpeg' });
                         const blobUrl = URL.createObjectURL(blob);
 
-                        // Assegna il link BLOB all'immagine target
                         imgElement.src = blobUrl;
 
-                        // Rendi visibile il contenitore di stile dell'immagine estratta
                         const wrapper = imgElement.closest('.station-poster-wrapper');
                         if (wrapper) wrapper.style.display = 'block';
                         
@@ -1071,7 +1170,36 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             
-            // 1. ESTRAZIONE AUTOMATICA DI TUTTE LE COPERTINE DALLE TRACCE MP3
+            // 1. GESTIONE SCHERMATA INIZIALE E MUSICA DI SOTTOFONDO (Superamento Autoplay)
+            const bgMusic = document.getElementById('bgMusic');
+            const audioToggle = document.getElementById('audioToggle');
+            const welcomeOverlay = document.getElementById('welcomeOverlay');
+            const enterBtn = document.getElementById('enterBtn');
+
+            // Quando l'utente preme il pulsante, l'audio parte istantaneamente e la schermata scompare
+            enterBtn.addEventListener('click', () => {
+                welcomeOverlay.classList.add('hidden');
+                
+                bgMusic.volume = 0.35; // Volume di sottofondo calibrato
+                bgMusic.play()
+                    .then(() => audioToggle.classList.add('playing'))
+                    .catch(err => console.log("Riproduzione audio bloccata dai permessi browser:", err));
+            });
+
+            // Controllo manuale successivo tramite bottone fluttuante
+            audioToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (bgMusic.paused) {
+                    bgMusic.play();
+                    audioToggle.classList.add('playing');
+                } else {
+                    bgMusic.pause();
+                    audioToggle.classList.remove('playing');
+                }
+            });
+
+
+            // 2. ESTRAZIONE AUTOMATICA DELLE COPERTINE
             const stationImages = document.querySelectorAll('.station-poster');
             stationImages.forEach(img => {
                 const audioSrc = img.getAttribute('data-audio-src');
@@ -1080,7 +1208,7 @@
                 }
             });
 
-            // 2. NOTA INTERATTIVA DINAMICA (AJÒ)
+            // 3. NOTA INTERATTIVA DINAMICA (AJÒ)
             const ajoNote = document.getElementById('ajo-note');
             if (ajoNote) {
                 ajoNote.addEventListener('click', () => {
@@ -1090,7 +1218,7 @@
                 });
             }
 
-            // 3. LOGICA MULTI-PLAYER AUDIO CON CONTROLLO MUTUO ED ESCLUSIVO
+            // 4. LOGICA MULTI-PLAYER AUDIO CON INTERRUZIONE MUSICA DI SOTTOFONDO
             const playerElements = document.querySelectorAll('.custom-player');
             const audioObjects = [];
 
@@ -1131,9 +1259,14 @@
                     iconPlay.style.display = 'block';
                     progressBar.style.width = '0%';
                     currentTimeDisplay.textContent = "0:00";
+                    
+                    if(audioToggle.classList.contains('playing')) {
+                        bgMusic.play();
+                    }
                 });
 
-                playBtn.addEventListener('click', () => {
+                playBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     if (audio.paused) {
                         audioObjects.forEach((otherAudio, otherIndex) => {
                             if (otherIndex !== index) {
@@ -1144,13 +1277,19 @@
                             }
                         });
 
-                        audio.play().catch(err => console.log("Riproduzione bloccata o file non trovato:", err));
+                        bgMusic.pause();
+
+                        audio.play().catch(err => console.log("File audioguida non trovato:", err));
                         iconPlay.style.display = 'none';
                         iconPause.style.display = 'block';
                     } else {
                         audio.pause();
                         iconPause.style.display = 'none';
                         iconPlay.style.display = 'block';
+                        
+                        if(audioToggle.classList.contains('playing')) {
+                            bgMusic.play();
+                        }
                     }
                 });
 
@@ -1165,7 +1304,7 @@
                 });
             });
 
-            // 4. SCROLL SPY & BOTTONE BACK TO TOP
+            // 5. SCROLL SPY & BOTTONE BACK TO TOP
             const backToTop = document.getElementById('backToTop');
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('section, main > section');
