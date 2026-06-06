@@ -47,7 +47,7 @@
             padding-bottom: 80px;
         }
 
-        /* SCHERMATA INIZIALE OTTIMIZZATA PER SMARTPHONE (Risolve il blocco sui telefoni piccoli) */
+        /* SCHERMATA INIZIALE OTTIMIZZATA PER SMARTPHONE */
         .welcome-overlay {
             position: fixed;
             top: 0;
@@ -61,7 +61,7 @@
             z-index: 9999;
             transition: opacity 0.6s ease, visibility 0.6s ease;
             padding: 1rem;
-            overflow-y: auto; /* Consente lo scorrimento se il telefono è molto piccolo o in orizzontale */
+            overflow-y: auto;
         }
 
         .welcome-box {
@@ -73,7 +73,7 @@
             text-align: center;
             max-width: 450px;
             width: 100%;
-            margin: auto; /* Mantiene al centro anche durante lo scorrimento */
+            margin: auto;
         }
 
         .welcome-box h2 {
@@ -100,11 +100,7 @@
             cursor: pointer;
             transition: var(--transition);
             box-shadow: 0 4px 12px rgba(30, 70, 49, 0.15);
-            width: 100%; /* Più facile da premere su mobile */
-        }
-
-        .enter-btn:hover {
-            background-color: var(--accent-myrtle-light);
+            width: 100%;
         }
 
         .welcome-overlay.hidden {
@@ -127,7 +123,7 @@
             margin-bottom: 1rem;
         }
 
-        /* HEADER CON NAVIGAZIONE SCROLLABILE SU MOBILE (Non stringe e non rompe la barra) */
+        /* HEADER CON NAVIGAZIONE SCROLLABILE SU MOBILE */
         header {
             background-color: rgba(253, 251, 247, 0.95);
             backdrop-filter: blur(10px);
@@ -171,14 +167,14 @@
         }
 
         nav {
-            overflow-x: auto; /* Permette il trascinamento laterale del menu se lo schermo è stretto */
+            overflow-x: auto;
             white-space: nowrap;
             max-width: 60%;
-            scrollbar-width: none; /* Nasconde barra scorrimento su Firefox */
+            scrollbar-width: none;
         }
 
         nav::-webkit-scrollbar {
-            display: none; /* Nasconde barra scorrimento su Chrome/Safari */
+            display: none;
         }
 
         .nav-menu {
@@ -311,7 +307,7 @@
             color: var(--accent-blue);
         }
 
-        /* LAYOUT PERCORSO LINEA TEMPORALE OTTIMIZZATO PER SCHERMI STRETTI */
+        /* LAYOUT PERCORSO LINEA TEMPORALE */
         .exhibition-container {
             max-width: 900px;
             margin: 2rem auto;
@@ -319,7 +315,6 @@
             position: relative;
         }
 
-        /* Spostata e calibrata la linea per lasciare spazio ai contenuti su mobile */
         .exhibition-container::before {
             content: '';
             position: absolute;
@@ -342,7 +337,6 @@
             z-index: 2;
         }
 
-        /* Badge allineato perfettamente alla linea da 1.75rem */
         .station-badge {
             width: 2.2rem;
             height: 2.2rem;
@@ -371,7 +365,6 @@
             }
         }
 
-        /* Contenuto allargato per non comprimere i testi su schermi da 360px */
         .station-content {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -412,13 +405,22 @@
             .station-title { font-size: 1.35rem; }
         }
 
-        /* COPERTINE DELLE TAPPE */
+        /* 👑 RIPRISTINATO IL LOGIC-STYLE DELLE COPERTINE (Risolve il bug "sballate") 👑 */
         .station-poster-wrapper {
             margin: 1rem 0;
             border-radius: 10px;
             overflow: hidden;
             border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            max-width: 100%;
             display: none;
+        }
+
+        .station-poster {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
         }
 
         /* AUDIO PLAYER */
@@ -499,7 +501,6 @@
         .note-body { font-size: 0.8rem; margin-top: 0.4rem; display: none; color: var(--text-dark); }
         .note-body.open { display: block; }
 
-        /* Pilastri della longevità incolonnati su mobile per evitare testi tagliati */
         .pilastri-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -523,7 +524,7 @@
         .author-name { font-family: var(--font-title); font-size: 1rem; color: var(--accent-blue); }
         .author-bio { font-size: 0.8rem; color: var(--text-dark); }
 
-        /* DESIGN NUOVA AREA GOOGLE MODULI */
+        /* DESIGN BOTTONE GOOGLE MODULI */
         .google-form-cta {
             margin-top: 1.5rem;
         }
@@ -542,7 +543,7 @@
             border-radius: 8px;
             transition: var(--transition);
             box-shadow: 0 4px 12px rgba(30, 70, 49, 0.15);
-            width: 100%; /* Occupa tutta la larghezza su mobile per un tap agevole */
+            width: 100%; 
             text-align: center;
         }
 
@@ -567,7 +568,7 @@
 
         footer p { color: rgba(255, 255, 255, 0.7); }
 
-        /* PULSANTI FLUTTUANTI OTTIMIZZATI AI REQUISITI GOOGLE DI ACCESSIBILITÀ (48x48px minimo) */
+        /* PULSANTI FLUTTUANTI ACCESSIBILI (48x48px standard mobile) */
         .back-to-top, .bg-music-toggle {
             position: fixed;
             bottom: 1.5rem;
@@ -609,6 +610,7 @@
 </head>
 <body>
 
+    <!-- SCHERMATA INIZIALE -->
     <div id="welcomeOverlay" class="welcome-overlay">
         <div class="welcome-box">
             <h2>Benvenuto nella Mostra</h2>
@@ -617,9 +619,10 @@
         </div>
     </div>
 
-    <audio id="bgMusic" loop>
-        <source src="musica_sottofondo.ogg" type="audio/ogg">
-        <source src="musica_sottofondo.mp3" type="audio/mpeg">
+    <!-- AUDIO DI SOTTOFONDO (Attivazione mobile-ready con caricamento forzato) -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="No potho reposare.ogg" type="audio/ogg">
+        <source src="No potho reposare.mp3" type="audio/mpeg">
     </audio>
 
     <header>
@@ -660,6 +663,7 @@
 
     <main class="exhibition-container">
 
+        <!-- STAZIONE 1 -->
         <section id="stazione1" class="station">
             <div class="station-badge">1</div>
             <div class="station-content">
@@ -731,6 +735,7 @@
             </div>
         </section>
 
+        <!-- STAZIONE 2 -->
         <section id="stazione2" class="station">
             <div class="station-badge">2</div>
             <div class="station-content">
@@ -779,12 +784,13 @@
                     </div>
                     <div class="food-item">
                         <div class="food-name">Il Filu 'e Ferru</div>
-                        <div class="food-desc">L'acquavite tradizionale. Il nome deriva dall'astuzia contadina in epoca di distillazione clandestina: le bottiglie venivano nascoste sottoterra e collegate a un sottile filo di ferro affiorante.</div>
+                        <div class="food-desc">L'acquavite tradicional. Il nome deriva dall'astuzia contadina in epoca di distillazione clandestina: le bottiglie venivano nascoste sottoterra e collegate a un sottile filo di ferro affiorante.</div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- STAZIONE 3 -->
         <section id="stazione3" class="station">
             <div class="station-badge">3</div>
             <div class="station-content">
@@ -840,6 +846,7 @@
             </div>
         </section>
 
+        <!-- STAZIONE 4 -->
         <section id="stazione4" class="station">
             <div class="station-badge">4</div>
             <div class="station-content">
@@ -903,6 +910,7 @@
             </div>
         </section>
 
+        <!-- SEZIONE QUESTIONARIO CON GOOGLE MODULI -->
         <section id="questionario" class="station">
             <div class="station-badge">?</div>
             <div class="station-content">
@@ -932,6 +940,7 @@
         <p>&copy; 2026 Mostra Digitale sulla Cultura Sarda. Tutti i diritti riservati.</p>
     </footer>
 
+    <!-- INTERFACCIA FLUTTUANTE BOTTONI -->
     <button id="audioToggle" class="bg-music-toggle" aria-label="Controlla musica di sottofondo">
         <svg class="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
         <svg class="icon-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
@@ -1027,7 +1036,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             
-            // 1. GESTIONE SCHERMATA INIZIALE E MUSICA DI SOTTOFONDO (Superamento Autoplay)
+            // 1. GESTIONE SCHERMATA INIZIALE E MUSICA DI SOTTOFONDO (Super-resistente per sistemi Mobile)
             const bgMusic = document.getElementById('bgMusic');
             const audioToggle = document.getElementById('audioToggle');
             const welcomeOverlay = document.getElementById('welcomeOverlay');
@@ -1036,10 +1045,25 @@
             enterBtn.addEventListener('click', () => {
                 welcomeOverlay.classList.add('hidden');
                 
+                // Forza il caricamento del file audio prima di avviarlo (richiesto da Safari Mobile e iOS)
+                bgMusic.load();
                 bgMusic.volume = 0.35; 
-                bgMusic.play()
-                    .then(() => audioToggle.classList.add('playing'))
-                    .catch(err => console.log("Riproduzione audio bloccata dai permessi browser:", err));
+                
+                const playPromise = bgMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        audioToggle.classList.add('playing');
+                    }).catch(err => {
+                        console.log("Primo tentativo bloccato. Attivo fallback su tocco successivo:", err);
+                        // Sistema di emergenza se il telefono blocca ancora il primo avvio
+                        const fallbackPlay = () => {
+                            bgMusic.play();
+                            audioToggle.classList.add('playing');
+                            document.removeEventListener('touchstart', fallbackPlay);
+                        };
+                        document.addEventListener('touchstart', fallbackPlay);
+                    });
+                }
             });
 
             audioToggle.addEventListener('click', (e) => {
